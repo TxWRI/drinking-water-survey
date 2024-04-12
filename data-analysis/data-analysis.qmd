@@ -1,0 +1,416 @@
+---
+title: "Data Analysis"
+author: Michael Schramm
+format:
+  typst:
+    papersize: us-letter
+    columns: 1
+    bibliography: refs.bib
+    bibliographystyle: apa
+    mainfont: "Minion Pro"
+knitr: 
+  opts_chunk: 
+    echo: false
+    fig-width: 6
+    fig-asp: 0.618
+    out-width: "100%"
+    fig-dpi: 300
+    dev: "ragg_png"
+
+---
+
+```{r setup}
+
+# knitr::opts_chunk$set(echo = FALSE,
+#                       dev = "ragg_png",
+#                       dpi = 300)
+
+library(modelsummary)
+library(ragg)
+library(survey)
+library(targets)
+library(tidyverse)
+library(tinytable)
+
+font_hoist <- function(family, silent = FALSE) {
+  font_specs <- systemfonts::system_fonts() |> 
+    dplyr::filter(family == {{family}}) |> 
+    dplyr::mutate(family = paste(family, style)) |> 
+    dplyr::select(plain = path, name = family)
+  
+  purrr::pwalk(as.list(font_specs), systemfonts::register_font)
+  
+  if (!silent)  message(paste0("Hoisted ", nrow(font_specs), " variants:\n",
+                               paste(font_specs$name, collapse = "\n")))
+}
+
+font_hoist("Manrope")
+
+```
+
+# Methodology
+
+## Survey Instrument
+
+The online survey was administered and distributed through the Qualtrics online
+panel in April 2023. Panels were recruited using gender, age, and 
+race/ethnicity quotas to obtain approximately representative samples of the U.S.
+population. Panels were continously sampled until a representative ssample was
+obtained, with a total sample size of 1,100 respondent and estimated ±3% margin
+of error at 95% confidence [@dillmanMailInternetSurveys2011]. Quality checks,
+performed by Qualitrics, excluded responses that failed attention or speed checks, 
+IP address checks, or failed to meet representative demographic criteria. 
+All participants were provided and agreed to a written informed consent agreement.
+The Texas A&M University Institutional Review Board reviewed the study
+protocol prior to distribution and deemed the study exempt from formal review.
+
+To assess the the drinking water sources and issues of public concern, we asked
+participants for their main sources of household tap water and their main source
+of drinking water. We also asked if they had experienced any of
+12 different potential drinking water issues. To assess concerns about
+contamination sources, we also asked how concerned they were about 10 different 
+potential sources of contamination on a five point scale from *"not at all concerned"* to 
+*"extremely concerned."* 
+
+Levels of responsibility and trust in different entities involved in drinking
+water management were assessed with 2 questions. First, participants were asked
+what level of responsibility (on a five point scale from *"no responsibility"* 
+to *"full responsibility"*) they believed each of six different entities had for
+ensuring drinking water is safe. We also asked what the participants level of
+trust was in each of those enties (on a five point scale from *"do not trust at 
+all"* to *"fully trust*").
+
+To assess the public's perceived safety of drinking water, we asked participants
+to rate their drinking water safety on an ordinal scale from 0 through 10.
+
+## Analysis
+
+Survey responses were weighted to match marginal sex/gender, age group, 
+race/ethnicity, and education proportions to 
+national level benchmarks from the 5-year 2021 American Community Survey (ACS).
+We chose to weight gender using "male" and "non-male" binary responses because
+the ACS only provides binary responses for sex. This approach groups "female" and
+"other" respondents under the same marginal weight. Race and ethnicity were 
+recoded at white or Caucasian and non-white categories due to small subpopulaiton
+sample sizes. Weights were 
+developed by poststratification raking using the American National Election 
+Study (ANES) weighting algorithm implemented in the *anesrake* R package 
+[@debellComputingWeightsAmerican2009; @pasekAnesrakeANESRaking2018].
+Weighted summary statistics were calculated using the *survey* R package
+[@lumleyAnalysisComplexSurvey2004].
+
+```{r}
+#| label: tbl-weights
+#| tbl-cap: Marginal survey and target population proportions and marginal weighted values.
+tar_read(weighted_demo_tbl)
+```
+
+
+## Models
+
+We used a multinomial logistic regression model [@agrestiCategoricalDataAnalysis2002] 
+to explore variables associated with the public's choice of drinking
+water source (unfiltered tap water, filtered tap water, bottled water, or other).
+We used proportional odds models 
+[@mccullaghRegressionModelsOrdinal1980; @agrestiCategoricalDataAnalysis2002] to 
+explore factors associated (1) trust in entities responsible for drinking 
+water safety, and (2) perceptions of drinking water safety. 
+Multinomial logistic regressions were fit using the *svyVGAM* R package 
+[@lumleySvyVGAM2023] and proportional odds models were fit using the *survey* 
+R package [@lumleyAnalysisComplexSurvey2004].
+We calculated the generalized variance inflation factor (GVIF) to evaluate 
+potential impacts of multi-collinearity among model predictors on our 
+interpretation of the models [@foxGeneralizedCollinearityDiagnostics1992].
+We report our model results as odds-ratios.
+
+### Primary choice in drinking water
+
+Prior research provides evidence that age, gender, perceptions of drinking water 
+safety, category of water supplier, and dissatisfaction with taste/color are 
+commonly associated with the higher likelihoods of bottled water usage 
+[@doriaBottledWaterTap2006; @gorelickPerceptionsWaterIncreased2011; @huBottledWaterUnited2011]. 
+We modeled choice of primary drinking water source 
+(unfiltered tap water, filtered tap water, or bottled water) using
+demographic variables ([@tbl-weights]), source of household tap water, and
+experience with any of (1) odd taste, (2) odd smell, (3) discolored water, or 
+(4) cloudy water. We hypothesize that ...
+
+### Levels of trust
+
+Although public trust in government institutions is at historically low levels 
+[@pewresearchcenterAmericansViewsGovernment2022], there is evidence that
+the public may have higher trust in local public water utilities relative
+to other state, local, and federal institutions 
+[@weisnerComplexitiesTrustUrban2020]. However, this effect might be confounded
+by experience with specific local drinking water problems. 
+We modeled the level of trust participants
+had in their local water provider using demographic variables,
+household tap water source, and experience with any of (1) odd taste, 
+(2) odd smell, (3) discolored water, or (4) cloudy water.
+
+
+### Perception of drinking water safety
+
+We explored factors associated with perceived safety in drinking water using a
+proportional odds model relating sex/gender, age, 
+race/ethnicity, education, home ownership, and household tap water supply to
+self-reported rating (on scale 1-10) of drinking water safety.
+
+
+
+
+
+# Results
+
+## Drinking water sources and issues
+
+The majority of respondents lived in homes with a municipal public water supply 
+(56%, 1.6% SE) with 13.3% using some type of private water supply ([@tbl-q5q6]).
+A relatively high percentage of respondents stats they did not know what the 
+source of their tap water was (13.3%, 1.2% SE). 
+The majority of respondents (65.5%) used unfiltered or filtered tap water as 
+their main source of drinking water ([@tbl-q5q6]). Bottled or pre-packaged 
+water was the primary drinking water sources for 34.2% (1.6% SE) of respondents.
+Only 3.1% (0.6% SE) of respondents stated that they had not experienced any
+issues with their tap water ([@tbl-q7]). Odd taste (27.5%, 1.4% SE), hardness 
+or scale buildup (20.3%, 1.3% SE), and odd smell (18.8%, 1.3% SE) were the most 
+common issues. Notably, 14.9% (1.1% SE) of respondent stated they have 
+experienced a boil water notice.
+
+```{r}
+#| label: tbl-q5q6
+#| tbl-cap: The proportion of respondents with the specified household water source and drinking water source.
+
+tar_read(q5_q6_summary)
+
+```
+
+
+
+
+```{r}
+#| label: tbl-q7
+#| tbl-cap: Proportion of respondents that have experienced specified issues with their drinking water.
+
+tar_read(q7_summary)
+
+```
+
+
+```{r}
+#| label: fig-q11
+#| fig-cap: Contaminants of concern
+
+
+tar_read(q11_summary)$p1
+```
+
+We did not observe strong differences among response levels between different
+contaminants of potential concern ([@fig-q11]). Pesticides (*extremely 
+concerned* = 21%, 1.3% SE; *very concerned* = 21.1%, 1.3% SE), industrial 
+chemicals (*extremely concerned* = 20.3%, 1.3% SE; *very concerned* = 20.1%, 
+1.3% SE), pathogens (*extremely concerned* = 19.9%, 1.3% SE; *very concerned* = 
+20.8%, 1.3% SE), and heavy metals (*extremely concerned* = 19.8%, 1.3% SE; 
+*very concerned* = 22.0%, 1.3% SE) are sources that elicited the highest
+levels of concern across all respondents. Disinfection byproducts 
+(*Not at all concerned* = 22.6%, 1.4% SE; *slightly concerned* = 20.7%, 1.3% SE) 
+and PFAS (*not at all concerned* = 23.0%, 1.4% SE; *slightly concerned* = 17.8%, 
+1.2% SE) were sources of least concern.
+
+
+
+```{r}
+#| label: fig-m2
+#| fig-cap: Effects of demographic variables, drinking water source, and experience with drinking water issues on drinking water choice. Odds-ratios are relative to unfiltered tap water. 
+#| fig-asp: 1.1
+tar_read(m2_coefs)$p1
+```
+
+Based on the multinomial regression model, we found limited effects of 
+demographic variables, drinking water sources, and experience with odd taste, 
+color, or smell on the odds of using bottled drinking water compared to
+unfiltered drinking water. Notably, females had 1.49 times the odds 
+(95% CI [1.02, 2.17]) of using bottled drinking water instead of unfiltered 
+tap water compared to males. Non-whites had 1.59 times the odds 
+(95% CI [1.01, 2.52]) of using bottled drinking water instead of unfiltered 
+drinking water compared to white respondents. Renters had 1.64 times the odds
+(95% CI [1.07, 2.50]) compared to homeowners.
+
+Conversely, older respondents were more likely to use unfiltered drinking water
+compared to filtered water (45:54 age group: OR = 0.29, 95% CI [0.132, 9.636];
+55:64 age group: OR = 0.29, 95% CI [0.130, 0.647]; 65+ age group: OR = 0.278, 
+95% CI [0.002, 1.25]) but there was not strong evidence for differences
+in odds between bottled water and unfiltered drinking water among any of the 
+age groups. Education also showed strong effects on the use of filtered drinking
+water. Having a bachelor's degree resulted in 4.31 times the odds of using 
+filtered drinking water compared to those not graduating high school.
+A master's degree had a similarly large effect (OR =  3.06, 95% CI [1.09, 8,59]).
+
+
+## Levels of responsibility and trust
+
+
+
+```{r}
+#| label: fig-q14
+#| fig-cap: Weighted proportional responses for the level of responsibility people believe different entities have for ensuring drinking water safety. Bar lengths represent the mean proportional response with eror bars representing the 95% confidence interval.
+
+tar_read(q14_summary)$p1
+
+```
+
+
+In general, higher proportions of survey respondents assigned water utilities 
+(53.3%, 95% CI [50.1%, 56.5%]), local government (40.7%, 95% CI [37.5%, 43.8%]), 
+and state government (36.6%, 95% CI [33.5%, 39.6%]) with the highest levels of 
+responsibility for ensuring safety of drinking water ([@fig-q14]).
+Moderate reponsibilty was the most common response for the level of 
+responsibility attributed to household residents (26.6%, 95% CI [23.9%, 29.4%]) 
+and landlords/property managers (27.6%, 95% CI [24.8%, 30.4%]).
+A relatively high proportion of responses indicated residents have no 
+responsibilty for drinking water quality (16.4%, 95% CI [14.0%, 18.9%]).
+Relative to other govenrmental institutations, fewer people felt the federal
+government had full responsibility (27.9%, 95% CI [25.0%, 30.7%]) for drinking 
+water safety.
+
+
+
+```{r}
+#| label: fig-q15
+#| fig-cap: Weighted proportional responses for the level of trust people have in the entities responsible for ensuring drinking water safety. Bar lengths represent the mean proportional response with eror bars representing the 95% confidence interval.
+
+tar_read(q15_summary)$p1
+
+```
+
+
+When asked for their level of trust in these entities for ensuring safety of 
+drinking water, 30% (95% CI [27.3%, 33.2%]) of respondents expressed they do not
+trust the federal government at all ([@fig-q15]). 
+Only 6.5% (95% CI [4.9%, 8.1%]) indicated they fully trust the federal 
+government for ensuring drinking water safety.
+State government fared slightly better, with 28.7% (95% CI [25.9%, 31.6%]) and 
+28.6% (95% CI [25.7%, 31.5%]) of respondents indicating they moderately trust 
+or somewhat trust the state government for ensuring safety.
+Local and state government had rates of full trust (7.1%, 
+95% CI  [5.5%, 8.7%] and 7.6%, 95% CI [5.9%, 9.3%], respectively) comparable to 
+the low rate observed for the federal government (6.5%, 95% CI [5.0%, 8.1%]). 
+
+Water utilities appear to be more trusted by the public than other governmental
+institutions. While the proportion of responses indicating moderate trust
+(27.0%, 95% CI [24.2%, 29.8%]) and mostly trust (22.3%, 95% CI [19.7%, 24.9%])
+are comparable to local, state, and federal government, much fewer people
+indicated that the "do not trust at all" the water utility (14.9%, 95% CI 
+[12.6%, 17.2%]).
+
+
+```{r}
+#| label: fig-q12
+#| fig-cap: Sources of drinking water quality information.
+
+
+tar_read(q12_summary)$p1
+```
+
+Water providers appear to be the most relied upon source for information on
+drinking water with 13.9% (1.1% SE) and 16.4% (1.2% SE) of responses indicating
+water providers are *always* or *often* used as a source of information 
+([@fig-q12]). Both social media (*always* = 11.5%, ±1% SE; *often* = 15.2%, ±1.1% SE) 
+and word-of-mouth (*always* = 9.4%, ±1% SE; *often* = 17.6%, ±1.2% SE) are also frequent
+sources of information with similar or higher usage than local news agencies 
+(*always* = 8.7%, ±0.9% SE; *often* = 14.3%, ±1.1% SE) or local newspapers
+(*always* = 6.6%, ±0.8% SE; *often* = 15.3%, ±1.1% SE). Some of the least
+utilized sources included radio or podcasts (*never* = 40.5%, ±1.6% SE; 
+*occasionally* = 20.1%, ±1.3% SE), email (*never* = 46.7%, 
+±1.6% SE; *occasionally* = 19.6%, ±1.3% SE), national newspapers (*never* = 
+51.8%, ±1.6% SE; *occasionally* = 16.7%, ±1.2% SE), and government agencies 
+(*never* = 37.5%, ±1.6% SE; *occasionally* = 22.4%, ±1.4% SE).
+
+
+## Perceptions of drinking water safety
+
+```{r}
+#| label: tbl-m1
+#| tbl-cap: Odds-ratios and 95% confidence intervals for drinking water quality rating. Higher odds-ratio indicates higher odds of providing a higher rating compared to the reference level rating.
+
+tar_read(m1) |>  
+  modelsummary::modelsummary(shape = term ~ statistic,
+                             fmt = 2,
+                             estimate = c("Odds-ratio" = "estimate"),
+                             statistic = c(
+                               "CI" = "[{conf.low}, {conf.high}]",
+                               "t-statistic" = "statistic",
+                               "p-value" = "p.value"
+                             ),
+                             output = "data.frame",
+                             exponentiate = TRUE,
+                             include_reference = TRUE,
+                             
+                             coef_omit = c(34:43),
+                             coef_rename = c(
+                               "Male", "Female", "Other", "18:24", "25:34", "35:44", "45:54", "44:64", "65+", "White", "Non-white", "Some high school", "High school or GED", "Associates degree", "Bachelor's degree", "Master's degree", "Doctorate/terminal degree", "Other", "Own", "Rent", "<\\$25,000", "\\$25,000-\\$49,999", "\\$50,000-\\$74,999", "\\$75,000-\\$99,999", "\\$100,000-\\$200,000", ">\\$200,000", "Public supply - municipal", "Public supply - rural water district", "Private supply - well, river, pond, rainwater", "I don't know", "Other", "No", "Yes"),
+                             gof_map = "none",
+                             width = 1) |> 
+  as_tibble() |> 
+  mutate(group = c("Sex/Gender", rep(" ", 2),
+                   "Age", rep(" ", 5),
+                   "Race", rep(" ", 1),
+                   "Education", rep(" ", 6),
+                   "Home ownership", " ",
+                   "Income", rep(" ", 5),
+                   "Household Tap Water Supply", rep(" ", 4),
+                   "Taste, Odor, Color Issues", rep(" ", 1))) |> 
+  select(" " = group,
+         "Variable" = term,
+         "Odds-ratio" = `(1) / Odds-ratio`,
+         "95% CI" = `(1) / CI`,
+         "t-statistic" = `(1) / t-statistic`,
+         "p-value" = `(1) / p-value`) |> 
+  tinytable::tt(width = 1) |> 
+  format_tt(j =  6, escape = TRUE) |> 
+  style_tt(i = 0,
+           bold = TRUE,
+           fontsize = 0.8) |> 
+  style_tt(j = 1,
+           bold = TRUE,
+           align = "l") |> 
+  style_tt(i = c(3,9,11,18,20,26),
+           j = c(2:6),
+           line = "b",
+           line_width = 0.05) |> 
+  style_tt(fontsize = 0.80)
+
+
+```
+
+
+
+The proportional odds model provides evidence that sex/gender, home ownership,
+household tap supply, and experience with taste/odor/color issues are associated
+with the perception of drinking water safety ([@tbl-m1]). 
+Females were `r round(1/0.76, 2)` times more likely to rate their drinking
+water less safe than males (OR = 0.76, 95% CI [0.59, 0.97]).
+Respondents identifying their gender as other had `r round(1/0.13, 2)` times 
+the odds (OR = 0.13, 95% CI [0.05, 0.32]) of rating their drinking water less safe
+than male respondents.
+Home ownership provided a strong signal with renters `r round(1/0.67,2)` times 
+more likely to provide a lower drinking water safety ranking than homeowners 
+(OR = 0.67, 95% CI [0.51, 0.89]).
+Respondents on private water supplies had 1.54 times that odds of providing
+a higher drinking water safety rating than people on municipal supplies 
+(OR = 1.54, 95% CI [1.10, 2.16]). 
+People that experienced taste/odor/color issues with `r round(1/0.32, 2)` times
+more likely to provide a lower safety rating than those that never experienced 
+an issue (OR = 0.32, 95% CI [0.24, 0.41]).
+
+We identified difference among some age groups, but a clear pattern was not
+evident. Respondents in the 45-54 age bracket were `r round(1/0.45, 2)`
+times more likely to provide a lower drinking water safety rating than the
+18-24 year old age group.
+
+**note-** we could add a plot of differences in marginal probabilities, but I think there are too many levels in our factors, plus really long labels.
+
+
+# Discussion
+
+
