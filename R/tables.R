@@ -29,7 +29,6 @@ write_tbl_weights <- function(unweighted, weighted) {
   weighted <- weighted |>
     summary()
   
-  
   df <- tibble(
     demographic_indicators = list(`Sex` = as_tibble(weighted$rk_SEX_NM,
                                                     rownames = "value") |>
@@ -44,48 +43,55 @@ write_tbl_weights <- function(unweighted, weighted) {
                                                           rownames = "value") |>
                                     mutate(`Variable` = "Education"))
   )
+  
   weighted <- df |>
     unnest(cols = c(demographic_indicators)) |>
     select(`Variable`, value, Target, `Wtd N`, `Wtd %`) |>
     filter(value != "Total") |>
-    rename(Value = value) |>
     mutate(Target = round(Target * 100, 1),
            `Wtd N` = round(`Wtd N`, 1),
            `Wtd %` = round(`Wtd %` * 100, 1)) |>
-    rename(`Target %` = Target,
-           `Weighted N` = `Wtd N`,
-           `Weighted %` = `Wtd %`)
+    rename(`\\vtop{\\hbox{Target}\\hbox{(\\%)}}` = Target,
+           `\\vtop{\\hbox{Weighted}\\hbox{(\\%)}}` = `Wtd %`,
+           `\\vtop{\\hbox{Weighted}\\hbox{(n)}}` = `Wtd N`)
   
   
   
   weighted <- unweighted |>
     left_join(weighted, by = c("Variable" = "Variable",
-                               "Value" = "Value")) |> 
-    arrange(Variable)
+                               "Value" = "value")) |>
+    arrange(Variable) |> 
+    rename(`\\vtop{\\hbox{Unweighted}\\hbox{(n)}}` = `Unweighted N`,
+           `\\vtop{\\hbox{Unweighted}\\hbox{(\\%)}}` = `Unweighted %`,)
   
   weighted |>
-    ungroup() |> 
-    select(-c("Variable")) |> 
-    tt() |> 
-    group_tt(i = list("Age" = 2,
-                      "Education" = 9,
-                      "Race/Ethnicity" = 17,
-                      "Sex/Gender" = 20
-                      )) |> 
-    style_tt(i = c(1,9,18,22),
-             bold = TRUE) |> 
-    style_tt(j = c(2),
-             align = "r") |> 
-    style_tt(j = c(3),
-             align = "r") |>
-    style_tt(j = c(4),
-             align = "r") |> 
-    style_tt(j = c(5),
-             align = "r") |> 
-    style_tt(j = c(6),
-             align = "r") |> 
-    style_tt(i = 3, j = 1, 
-             indent = 5)
+    ungroup() |>
+    select(-c("Variable")) |>
+    tt()
+    
+  # weighted |>
+  #   ungroup() |> 
+  #   select(-c("Variable")) |> 
+  #   tt() |> 
+  #   group_tt(i = list("Age" = 2,
+  #                     "Education" = 9,
+  #                     "Race/Ethnicity" = 17,
+  #                     "Sex/Gender" = 20
+  #                     )) |> 
+  #   style_tt(i = c(1,9,18,22),
+  #            bold = TRUE) |> 
+  #   style_tt(j = c(2),
+  #            align = "r") |> 
+  #   style_tt(j = c(3),
+  #            align = "r") |>
+  #   style_tt(j = c(4),
+  #            align = "r") |> 
+  #   style_tt(j = c(5),
+  #            align = "r") |> 
+  #   style_tt(j = c(6),
+  #            align = "r") |> 
+  #   style_tt(i = 3, j = 1, 
+  #            indent = 5)
 }
 
 

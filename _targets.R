@@ -75,7 +75,7 @@ list(
   tar_target(m1,
              fit_m1(clean_survey,
                     raked_weights)),
-  tar_target(m1_diffs,
+  tar_target(m1_coefs,
              draw_m1(m1)),
 
   ## returns the GVIF of each moderator in the model
@@ -91,9 +91,16 @@ list(
   tar_target(m2_coefs,
              draw_m2(m2)),
   
+  ## m3 trust in local utility
+  ## fits an ordered logistic regression using {survey}
+  tar_target(m3,
+             fit_m3(clean_survey, raked_weights)),
+  tar_target(m3_coefs,
+             draw_m3(m3)),
   
   
   ## model figures
+  tar_target(m1_m3_coefs, plot_m1_m3(m1_coefs, m3_coefs)),
   
   ## Summary table
   tar_target(weighted_demo_tbl, write_tbl_weights(clean_survey,
@@ -111,6 +118,8 @@ list(
 
   ## Report
   tar_quarto(data_analysis_report, "data-analysis/data-analysis.qmd",
+             quiet = FALSE),
+  tar_quarto(sup_mats, "supplementary-materials/supplementary-materials.qmd",
              quiet = FALSE)
 
 )

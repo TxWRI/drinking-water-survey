@@ -187,3 +187,26 @@ write_fig_q15 <- function(df, weights) {
   return(list(p1 = p1,
               df = df_1))
 }
+
+
+
+plot_m1_m3 <- function(m1_coefs, m3_coefs) {
+  m1_coefs$df |> 
+    bind_rows(m3_coefs$df) |> 
+    ggplot() +
+    geom_vline(xintercept = 1) +
+    geom_pointrange(aes(x = estimate, xmin = conf.low, xmax = conf.high, y = term, color = model)) +
+    ggforce::facet_col(vars(group), scales = "free_y", space = "free") +
+    scico::scale_color_scico_d("Models:", palette = "glasgow", begin = 0.25, end = 0.75) +
+    scale_x_log10() +
+    labs(x = "Odds-ratio", y = "") +
+    theme_mps() +
+    theme(axis.text.y = element_text(size = 8, hjust = 1),
+          axis.text.x = element_text(size = 8),
+          legend.text = element_text(size = 8),
+          panel.grid.major.y = element_blank(),
+          panel.grid.major.x = element_line(linetype = "dotted", color = "#d9d9d9"),
+          strip.background = element_blank(),
+          strip.placement = "outside",
+          strip.text.x.top =  element_text(size = 8, angle = 0,vjust = 0, hjust = 0))
+}
