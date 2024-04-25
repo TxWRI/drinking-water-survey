@@ -1,5 +1,5 @@
 ---
-title: "Drinking Water Survey"
+title: "Perceptions of drinking water management and safety: A public survey of U.S. residents"
 subtitle: "Supplementary Materials"
 author:
   - name: Michael Schramm
@@ -25,6 +25,8 @@ author:
 
 format:
   hikmah-pdf:
+    fontfamily: Roboto
+    fontfamilyoptions: sfdefault
     include-in-header: 
       text: |
         \usepackage{pdflscape}

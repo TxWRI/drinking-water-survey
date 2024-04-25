@@ -1,6 +1,26 @@
 ---
-title: "Data Analysis"
-author: Michael Schramm
+title: "Perceptions of drinking water management and safety: A public survey of U.S. residents"
+author:
+  - name: Michael Schramm
+    orcid: 0000-0003-1876-6592
+    email: michael.schramm@ag.tamu.edu
+    affiliations:
+       - id: ag
+         name: Texas A&M AgriLife
+         department: Texas Water Resources Institute
+         city: College Station, TX
+         country: USA
+  - name: Allen Berthold
+    affiliations:
+      -  ref: ag
+  - name: Audrey McCrary
+    orcid: 0000-0002-7061-6113
+    affiliations:
+      - ref: ag
+  - name: Stephanie deVilleneuve
+    orcid: 0009-0002-3984-035X
+    affiliations:
+      - ref: ag
 format:
   typst:
     papersize: us-letter
