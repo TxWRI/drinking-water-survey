@@ -1,33 +1,34 @@
 ---
 title: "Perceptions of drinking water management and safety: A public survey of U.S. residents"
+abstract: "tbd"
+pub-date:
+  - title: Submitted
+    date: "`datetime(year: 2024, month: 05, day: 01)`{=typst}"
 author:
+  - name: T. Allen Berthold
+    affiliations: 1
+  - name: Audrey McCrary
+    orcid: 0000-0002-7061-6113
+    affiliations: 1
   - name: Michael Schramm
     orcid: 0000-0003-1876-6592
     email: michael.schramm@ag.tamu.edu
-    affiliations:
-       - id: ag
-         name: Texas A&M AgriLife
-         department: Texas Water Resources Institute
-         city: College Station, TX
-         country: USA
-  - name: Allen Berthold
-    affiliations:
-      -  ref: ag
-  - name: Audrey McCrary
-    orcid: 0000-0002-7061-6113
-    affiliations:
-      - ref: ag
+    affiliations: 1
   - name: Stephanie deVilleneuve
     orcid: 0009-0002-3984-035X
-    affiliations:
-      - ref: ag
+    affiliations: 1
+institute:
+  - id: 1
+    name: Texas Water Resources Institute, Texas A&M AgriLife
 format:
-  typst:
+  quarto-lapreprint-typst:
     papersize: us-letter
     columns: 1
     bibliography: refs.bib
     bibliographystyle: apa
     mainfont: "Minion Pro"
+kind: "Draft Preprint"
+
 knitr: 
   opts_chunk: 
     echo: false
@@ -39,7 +40,11 @@ knitr:
 
 ---
 
-```{r setup}
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| warning: false
 
 
 library(modelsummary)
@@ -64,6 +69,104 @@ font_hoist <- function(family, silent = FALSE) {
 font_hoist("Manrope")
 
 ```
+
+# Introduction
+
+Dramatic declines in mortality rates since the late 1800s are largely attributed
+to advances and adoption of clean water technologies 
+[@cutlerRolePublicHealth2005].
+However, even in the United States (U.S.), there is clear evidence of unequal access 
+to safe drinking water and variable trust towards the entities responsible for providing 
+clean drinking water [@meehanExposingMythsHousehold2020].
+Recent high profile drinking water crises in U.S. cities (notably Flint, 
+Michigan and Jackson, Mississippi) highlight the intersection of water insecurity,
+racial injustices, and distrust in authorities responsible for 
+delivering safe drinking water [@meehanExposingMythsHousehold2020; @pauliFlintWaterCrisis2020; @mengUrbanWaterCrisis2023].
+The combination of regulatory/utility management system failures with historical
+power imbalances results in diminished trust by marginalized communities with 
+public drinking water systems and the entities responsible for ensuring safety 
+[@rosingerHomeTapWater2020; @jaffeeUnequalTrustBottled2024].
+
+Characterizing consumer perceptions of drinking water safety across the U.S. is
+a challenge due to the diversity in community composition, experiences, 
+drinking water sources, and fragmentation in governance and responsibility of
+drinking water safety. Community water systems (CWS) provide water for 
+household use to approximately 283 million Americans, while another 42.5 million 
+Americans utilize self-supplied sources such as private wells [@dieterEstimatedUseWater2018].
+The size, capacity, and population served by CWSs are highly variable. CWSs serving
+less than 10,000 people account for 91% of CWSs, but serve only 16% of the U.S.
+population; while the largest 9% of CWS provide water to 83% of the U.S. population 
+[@levinUSDrinkingWater2024]. Among CWSs, 61% of withdrawals are from surface
+water but self-supplied water is overwhelmingly (98%) sourced from groundwater 
+[@dieterEstimatedUseWater2018].
+
+On a national scale, drinking water provided through public utilities is 
+considered safe based on compliance metrics set out by the U.S. Environmental
+Protection Agency, with 7-8% of CWSs reporting at least one violation annually 
+[@allaireNationalTrendsDrinking2018].
+However, the occurrence of these violations fall hardest on marginalized communities.
+The body of evidence shows that small and rural CWSs, especially those serving
+disadvantaged communities have higher likelihoods of drinking water violations 
+[@levinUSDrinkingWater2024; @mcdonaldDrinkingWaterViolations2018; 
+@allaireNationalTrendsDrinking2018; @baeEthnicityPovertyRace2023; @strosniderRuralUrbanDifferences2017; @switzerClassRaceEthnicity2018].
+Increased rates of violations among small CWSs include limited technical
+capacity, smaller labor markets, reduced economies of scale, and economic 
+constraints preventing investments in aging infrastructure 
+[@levinUSDrinkingWater2024; @switzerHumanCapitalResource2016; @scottDrinkWhatYou2018]. 
+While less frequent, large systems are not immune from failure to provide safe 
+drinking water as demonstrated in Flint, Jackson, and other municipalities. 
+These high profile failures lead to confirmation of preexisting distrust of 
+government institutions by communities that have experienced marginalization 
+[@jaffeeUnequalTrustBottled2024]. Tap water avoidance has consistently increased
+among children, Hispanics, non-Hispanic black, and lower socioeconomic status 
+communities since the mid 2015 Flint Michigan crisis, suggesting decreased
+levels of trust in tap water [@rosingerHomeTapWater2020].
+Furthermore, emerging contaminants, such as per- and 
+polyfluorinated substances, present new challenges to drinking water systems and
+the failure to rapidly address these contaminants further erodes trust
+in drinking water safety [@levinUSDrinkingWater2024; 
+@domingoHumanExposurePolyfluoroalkyl2019; @bertholdLetTalkPFAS2023].
+Underscoring perceptions about drinking water safety are people's trust
+in the institutions and public authorities responsible for providing safe water
+[@teodoroProfitsDistrustCitizenconsumers2022].
+While public trust in government institutions is at historically low levels 
+[@pewresearchcenterAmericansViewsGovernment2022], there is some limited 
+evidence that the public may have higher trust in local 
+public water utilities relative to other state, local, and federal 
+institutions [@weisnerComplexitiesTrustUrban2020]. 
+
+
+The limited research on self-supplied water users indicates that private well
+users are more likely to perceive their water as safe relative to people
+on public water systems [@gholsonConsumerWaterQuality2018; @huBottledWaterUnited2011].
+In the U.S., private wells are not regulated under the Safe Drinking Water Act
+or other rules to ensure safety/quality of the water and the 
+management of those wells are left to the owner. Therefore, private well programs
+offered through local health departments or state extension services play
+an important role in educating well owners on the need for maintenance and water
+quality testing to ensure drinking water safety [@waitDisparitiesWellWater2020; 
+@gholsonConsumerWaterQuality2018]. 
+Evidence suggests rates of tap water 
+contamination can be relatively high among private wells [@pieperIncidenceWaterborneLead2015; @knobelochPrivateDrinkingWater2013; @swistockWaterQualityManagement2013; @craunCausesOutbreaksAssociated2010] despite
+the belief in high water quality.
+Furthermore, relatively few well owner conduct regular testing or maintenance
+activities [@kreutzwiserUnderstandingStewardshipBehaviour2011; @gholsonConsumerWaterQuality2018]
+and the educational support for these activities can be highly variable [@waitDisparitiesWellWater2020].
+
+Decreased trust in water providers or water quality results in the increased
+reliance and usage of alternative sources of drinking water such as bottled 
+water [@jaffeeUnequalTrustBottled2024; @huBottledWaterUnited2011]. Evidence
+also points to factors such as age, gender, race/ethnicity, and dissatisfaction with taste/color
+with increased reliance on bottled water sources [@doriaBottledWaterTap2006; 
+@gorelickPerceptionsWaterIncreased2011; @huBottledWaterUnited2011; 
+@rosingerHomeTapWater2020].
+Increased reliance on more expensive bottled water source further contribute
+to issues of water insecurity in already marginalized communities.
+
+
+
+
+
 
 # Methodology
 
@@ -106,7 +209,7 @@ water, we asked participants to rate their drinking water safety on an ordinal
 scale from 0 through 10. We assessed sources of drinking water quality 
 information by asking how often (five point scale from *"never"* to *"always*")
 each of 11 different sources were used to get information about drinking water
-quality. **create supplementary info with survey questions**
+quality. Questions are documented in the supplementary information (Table S1).
 
 ## Analysis
 
@@ -130,67 +233,25 @@ Weighted summary statistics were calculated using the *survey* R package
 
 We explored factors associated with changes in (1) primary drinking water source,
 (2) perceived safety of drinking water, and (3) perception of drinking water 
-safety using regression-based approaches. Prior research provides evidence that 
-age, gender, perceptions of drinking water safety, category of water supplier, 
-and dissatisfaction with taste/color are commonly associated with the higher 
-likelihoods of bottled water usage 
-[@doriaBottledWaterTap2006; @gorelickPerceptionsWaterIncreased2011; @huBottledWaterUnited2011]. 
-We modeled choice of primary drinking water source 
-(unfiltered tap water, filtered tap water, or bottled water) using
-demographic variables ([@tbl-weights]), source of household tap water, and
-experience with any of (1) odd taste, (2) odd smell, (3) discolored water, or 
-(4) cloudy water.
-
-
-
-
-We used a multinomial logistic regression model [@agrestiCategoricalDataAnalysis2002] 
-to explore variables associated with the public's choice of drinking
-water source (unfiltered tap water, filtered tap water, bottled water, or other).
+safety using regression-based approaches.
+Each of our models included demographic variables (Table S1), source
+of household tap water, and experience with any of (1) odd taste, (2) 
+odd smell, (3) discolored water, or (4) cloudy water as explanatory
+variables. 
+Primary drinking water source (unfiltered tap water, 
+filtered tap water, or bottled water) was modeled using a multinomial 
+logistic regression model [@agrestiCategoricalDataAnalysis2002].
 We used proportional odds models 
 [@mccullaghRegressionModelsOrdinal1980; @agrestiCategoricalDataAnalysis2002] to 
 explore factors associated (1) trust in entities responsible for drinking 
-water safety, and (2) perceptions of drinking water safety. 
-Multinomial logistic regressions were fit using the *svyVGAM* R package 
-[@lumleySvyVGAM2023] and proportional odds models were fit using the *survey* 
-R package [@lumleyAnalysisComplexSurvey2004].
+water safety (five-point scale), and (2) self-reported rating (on scale 1-10) 
+of drinking water safety. Multinomial logistic regressions were fit using 
+the *svyVGAM* R package [@lumleySvyVGAM2023] and proportional odds models were 
+fit using the *survey* R package [@lumleyAnalysisComplexSurvey2004].
 We calculated the generalized variance inflation factor (GVIF) to evaluate 
 potential impacts of multi-collinearity among model predictors on our 
 interpretation of the models [@foxGeneralizedCollinearityDiagnostics1992].
 We report our model results as odds-ratios.
-
-### Primary choice in drinking water
-
-Prior research provides evidence that age, gender, perceptions of drinking water 
-safety, category of water supplier, and dissatisfaction with taste/color are 
-commonly associated with the higher likelihoods of bottled water usage 
-[@doriaBottledWaterTap2006; @gorelickPerceptionsWaterIncreased2011; @huBottledWaterUnited2011]. 
-We modeled choice of primary drinking water source 
-(unfiltered tap water, filtered tap water, or bottled water) using
-demographic variables ([@tbl-weights]), source of household tap water, and
-experience with any of (1) odd taste, (2) odd smell, (3) discolored water, or 
-(4) cloudy water. We hypothesize that ...
-
-### Levels of trust
-
-Although public trust in government institutions is at historically low levels 
-[@pewresearchcenterAmericansViewsGovernment2022], there is evidence that
-the public may have higher trust in local public water utilities relative
-to other state, local, and federal institutions 
-[@weisnerComplexitiesTrustUrban2020]. However, this effect might be confounded
-by experience with specific local drinking water problems. 
-We modeled the level of trust participants
-had in their local water provider using demographic variables,
-household tap water source, and experience with any of (1) odd taste, 
-(2) odd smell, (3) discolored water, or (4) cloudy water.
-
-
-### Perception of drinking water safety
-
-We explored factors associated with perceived safety in drinking water using a
-proportional odds model relating sex/gender, age, 
-race/ethnicity, education, home ownership, and household tap water supply to
-self-reported rating (on scale 1-10) of drinking water safety.
 
 
 
@@ -400,9 +461,27 @@ evident. Respondents in the 45-54 age bracket were `r round(1/0.45, 2)`
 times more likely to provide a lower drinking water safety rating than the
 18-24 year old age group.
 
-**note-** we could add a plot of differences in marginal probabilities, but I think there are too many levels in our factors, plus really long labels.
 
 
 # Discussion
 
+# Notes
+
+@switzerClassRaceEthnicity2018 finds interaction between race and other socioeconomic
+factors particularly important. For communities of lower socioeconomic status, race plays 
+an even larger role in predicting the likelihood of SDW violations. This may suggest
+non-white poor communities have higher propensity for distrust in water quality,
+but we fail to incorporate these interactions in our model due to sample sizes. 
+
+
+# Acknowledgements
+
+TBD
+
+# Author Contributions
+
+AB: Conceptualization, Investigation, Project administration, Supervision, Writing - review & editing.
+AM: Data curation, investigation, methodology, writing - original draft.
+SD: Investigation, methodology, writing - original draft.
+MS: Methodology, formal analysis, software, visualization, writing - original draft.
 

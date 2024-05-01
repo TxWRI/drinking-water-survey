@@ -51,6 +51,7 @@ knitr:
 #| label: setup
 #| echo: false
 #| message: false
+#| warning: false
 
 
 library(modelsummary)
@@ -86,6 +87,7 @@ tibble(
     "What is the source of your household tap water?",
     "What is your main source of drinking water?",
     "Has your primary source of drinking water ever been impacted by any of the following issues? (select all that apply)",
+    "To your knowledge, has your primary source of drinking water been impacted by any of the following contaminants? (select all that apply)",
     "On a scale from 0 to 10, how safe do you believe your drinking water is for consumption?",
     "\\textsuperscript{1}What is your level of trust in the following entities for making sure drinking water is safe for consumption:
     \\begin{itemize}[nosep]
@@ -136,6 +138,20 @@ tibble(
     \\item[$\\square$] Corrosion of pipes or water fixtures
     \\item[$\\square$] Boil water notice
     \\item[$\\square$] Water shortage
+    \\item[$\\square$] None of the above
+    \\item[$\\square$] Other
+    \\end{itemize}",
+    "\\begin{itemize}[nosep]
+    \\item[$\\square$] Disinfection byproducts (DFBs)
+    \\item[$\\square$] Fertilizers (nitrates, phosphates)
+    \\item[$\\square$] Heavy metals (lead, arsenic, mercury, etc.)
+    \\item[$\\square$] Industrial chemicals
+    \\item[$\\square$] Microplastics
+    \\item[$\\square$] PFAS (per- and polyfluoroalkyl substances)
+    \\item[$\\square$] Pathogens (bacteria, viruses, amoebas)
+    \\item[$\\square$] Pesticides
+    \\item[$\\square$] Petroleum products
+    \\item[$\\square$] Pharmaceuticals
     \\item[$\\square$] None of the above
     \\item[$\\square$] Other
     \\end{itemize}",

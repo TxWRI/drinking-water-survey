@@ -1,8 +1,8 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|25382231104107c7|||||||||||||||
+.Random.seed|object|43c60cfb52af9810|||||||||||||||
 clean_survey|stem|1fb0b1645b71b782|77189d701f6b1f18|e36a727fa31790e8|-1983322068||t19801.5449328006s|2d3f16f777831e9e|39245|rds|local|vector|||25.41||
 corr_plot|function|6fd2768e6ec48855|||||||||||||||
-data_analysis_report|stem|c2a0d0c78d975f13|0ff665d75be7c17a|02dfeab2c130a2b9|826423252|data-analysis/data-analysis.pdf*data-analysis/data-analysis.qmd|t19838.8411491781s|70a974a1877b370f|902905|file|local|vector|||22.28||
+data_analysis_report|stem|19b2fb2ffccc4564|0ff665d75be7c17a|02dfeab2c130a2b9|826423252|data-analysis/data-analysis.pdf*data-analysis/data-analysis.qmd|t19844.8586022259s|5211dc67d4ae7ebc|962535|file|local|vector|||19.41||
 draw_m1|function|9f11b618ccbf7a09|||||||||||||||
 draw_m2|function|46b5dc95c10438fd|||||||||||||||
 draw_m3|function|c8b209789ee5d02b|||||||||||||||
@@ -44,7 +44,7 @@ rake|function|c5b2bd011b001702|||||||||||||||
 raked_weights|stem|0e8219006ffceb85|8347cd29438a8b5c|fa9e15e49666f82d|201582634||t19801.5449338138s|5efd2ed2cd6b0df3|49346|rds|local|vector|||0.04|Targets for rk_AGEP do not sum to 100. Adjusting values to total 100Targets for rk_SCHL do not sum to 100. Adjusting values to total 100|
 read_survey|function|99bde7441e03fc2f|||||||||||||||
 recode_pums|function|54580698790435d7|||||||||||||||
-sup_mats|stem|029d03174bdc5f35|deeb755470a8ef2d|74f76510f01206c5|1325754969|supplementary-materials/supplementary-materials.pdf*supplementary-materials/supplementary-materials.qmd|t19838.890903847s|2630c0a5a7aba00a|47689|file|local|vector|||37.78||
+sup_mats|stem|359998877ecd3a5f|deeb755470a8ef2d|74f76510f01206c5|1325754969|supplementary-materials/supplementary-materials.pdf*supplementary-materials/supplementary-materials.qmd|t19843.7350180067s|7980860dfc57c196|46071|file|local|vector|||44.68||
 survey|stem|8c6a19eb59b3f1de|3954ff0546f7c28a|c7f650620dd63b8c|-695389963||t19793.4783911454s|4037d62b01047543|78230|rds|local|vector|||0.96||
 survey_csv|stem|b47fde2ca5a85eff|a049250e728f5579|ef46db3751d8e999|-1728299971|data/Survey_Data_Coded.csv|t19549.5519247237s|e23f1e84297a4fed|304970|file|local|vector|||4.37|package mice was built under R version 4.3.2|
 target_prop_list|stem|54f6161902ebcd0b|c1d15225697903bd|f7e4b22fbdb3f92e|-380132790||t19790.8536950161s|91d375b86ccd1383|454|rds|local|vector|||0||
