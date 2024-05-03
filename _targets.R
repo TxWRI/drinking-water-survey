@@ -117,6 +117,7 @@ list(
   tar_target(q14_summary, write_fig_q14(clean_survey, raked_weights)),
   tar_target(q14_shaded, write_fig_q14_shaded(clean_survey, raked_weights)),
   tar_target(q15_summary, write_fig_q15(clean_survey, raked_weights)),
+  tar_target(q15_shaded, write_fig_q15_shaded(clean_survey, raked_weights)),
 
 
   ## Report

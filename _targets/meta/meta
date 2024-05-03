@@ -1,8 +1,8 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|9f365cd23c1b32ae|||||||||||||||
+.Random.seed|object|7944d7a43753406b|||||||||||||||
 clean_survey|stem|1fb0b1645b71b782|77189d701f6b1f18|e36a727fa31790e8|-1983322068||t19801.5449328006s|2d3f16f777831e9e|39245|rds|local|vector|||25.41||
 corr_plot|function|6fd2768e6ec48855|||||||||||||||
-data_analysis_report|stem|505d7bd1305df8f7|1e4a40d9c02d08c0|4100df5864bb6310|826423252|data-analysis/data-analysis.pdf*data-analysis/data-analysis.qmd|t19846.8262615686s|f346d7e8248097fe|1008138|file|local|vector|||24.63||
+data_analysis_report|stem|1c88954b5acc9510|1e4a40d9c02d08c0|4100df5864bb6310|826423252|data-analysis/data-analysis.pdf*data-analysis/data-analysis.qmd|t19846.8436786946s|0770b8e5d8736e81|1008144|file|local|vector|||24.58||
 draw_m1|function|9f11b618ccbf7a09|||||||||||||||
 draw_m2|function|46b5dc95c10438fd|||||||||||||||
 draw_m3|function|c8b209789ee5d02b|||||||||||||||
@@ -39,6 +39,7 @@ q12_summary|stem|7c98281906943760|b1b392d743730413|a0746e25596e9d44|-72849628||t
 q12_supplement|stem|5f84a546d494b3c6|338c9f65d791c1f1|b36d24b57a6be644|-317936530||t19845.7134153578s|32ca895c8acd249e|612438|rds|local|vector|||14.9|Ignoring unknown aesthetics fill. The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.. Ignoring unknown aesthetics fill. Ignoring unknown aesthetics fill. Ignoring unknown aesthetics fill. Ignoring unknown aesthetics fill. Ignoring unknown aesthetics fill|
 q14_shaded|stem|1042098f4b83944e|2141441ee5d541e6|b197dba53306d86e|523938317||t19846.8259730386s|483b6356265880da|342337|rds|local|vector|||0.61|The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
 q14_summary|stem|426d4c5d347c344d|59a06a5377ed06f7|5cb75606a93e89a4|1993458032||t19822.4878952546s|1741e8da4d6502a3|245639|rds|local|vector|||0.68|The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
+q15_shaded|stem|31ba3fc7a34fbe87|dbe86d865500073b|c6193f7bb9e1c3e0|-178734666||t19846.8469914073s|e513eb4395346730|342516|rds|local|vector|||0.61|The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
 q15_summary|stem|4e5ce314d4886fb6|e81695ed12ecbc9d|cc86e199c3fd24d7|1803167241||t19822.4879014479s|d9e707da524347dc|245963|rds|local|vector|||0.44||
 q5_q6_summary|stem|90ef8b7289db0296|39410e510dbb51f5|62ac89d896a3a22d|-909188041||t19801.5449409154s|a60aab5e3ec54799|224836|rds|local|vector|||0.27||
 q7_summary|stem|d71f1bc8f0dbc291|1099eabd684b895d|8168ff54bde42375|-1090159519||t19801.5449474842s|dea4aa4d5448a4fc|223435|rds|local|vector|||0.5||
@@ -59,6 +60,7 @@ weighted_demo_tbl|stem|92a5ee78bde28aba|5a0dd9461feb7c6c|4470020d5aa28055|-12992
 write_fig_q14|function|f13c759c49ab2934|||||||||||||||
 write_fig_q14_shaded|function|3d8f649aa4c6601a|||||||||||||||
 write_fig_q15|function|2a504d7f4913e3c6|||||||||||||||
+write_fig_q15_shaded|function|8cf5a5408a8d1a36|||||||||||||||
 write_fig_q7|function|645a0d861df8dc1b|||||||||||||||
 write_fig_q8|function|3d3e6127113f6456|||||||||||||||
 write_table_q11|function|db380a863ed84451|||||||||||||||
