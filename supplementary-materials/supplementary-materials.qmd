@@ -32,6 +32,7 @@ format:
         \usepackage{pdflscape}
         \UseTblrLibrary{varwidth, counter}
         \renewcommand{\thetable}{S\arabic{table}}
+        \renewcommand{\thefigure}{S\arabic{figure}}
   
 keep-tex: true
 
@@ -216,6 +217,60 @@ tar_read(weighted_demo_tbl) |>
 ```
 
 
+```{r}
+#| label: fig-news-sex
+#| fig-cap: Sources of drinking water quality information by sex/gender.
+#| fig-asp: 1
+#| out-width: "100%"
+
+tar_read(q12_supplement)$SEX
+```
+
+```{r}
+#| label: fig-news-age
+#| fig-cap: Sources of drinking water quality information by age.
+#| fig-asp: 1
+#| out-width: "100%"
+
+tar_read(q12_supplement)$AGEP
+```
+
+```{r}
+#| label: fig-news-race
+#| fig-cap: Sources of drinking water quality information by race/ethnicity.
+#| fig-asp: 1
+#| out-width: "100%"
+
+tar_read(q12_supplement)$RACE2
+```
+
+```{r}
+#| label: fig-news-hownshp
+#| fig-cap: Sources of drinking water quality information by home ownership.
+#| fig-asp: 1
+#| out-width: "100%"
+
+tar_read(q12_supplement)$HOWNSHP
+```
+
+
+```{r}
+#| label: fig-news-income
+#| fig-cap: Sources of drinking water quality information by income.
+#| fig-asp: 1
+#| out-width: "100%"
+
+tar_read(q12_supplement)$INCOME
+```
+
+```{r}
+#| label: fig-news-schl
+#| fig-cap: Sources of drinking water quality information by education.
+#| fig-asp: 1
+#| out-width: "100%"
+
+tar_read(q12_supplement)$SCHL
+```
 
 
 {{< pagebreak >}}

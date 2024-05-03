@@ -476,3 +476,142 @@ write_table_q12 <- function(df, weights) {
               p1 = p1))
   
 }
+
+
+
+
+plot_q12_supplement_gg <- function(survey_design, var) {
+  q12_1 <- survey_design |> 
+    group_by({{var}}, Q12_1) |> 
+    summarise(proportion = survey_mean(vartype = "se")) |> 
+    mutate(Source = "Local news agency") |> 
+    rename(Response = Q12_1)
+  
+  q12_2 <- survey_design |> 
+    group_by({{var}}, Q12_2) |> 
+    summarise(proportion = survey_mean(vartype = "se")) |> 
+    mutate(Source = "National news agency") |> 
+    rename(Response = Q12_2)
+  
+  q12_3 <- survey_design |> 
+    group_by({{var}}, Q12_3) |> 
+    summarise(proportion = survey_mean(vartype = "se")) |> 
+    mutate(Source = "Local newspaper") |> 
+    rename(Response = Q12_3)
+  
+  q12_4 <- survey_design |> 
+    group_by({{var}}, Q12_4) |> 
+    summarise(proportion = survey_mean(vartype = "se")) |> 
+    mutate(Source = "National newspaper") |> 
+    rename(Response = Q12_4)
+  
+  q12_5 <- survey_design |> 
+    group_by({{var}}, Q12_5) |> 
+    summarise(proportion = survey_mean(vartype = "se")) |> 
+    mutate(Source = "Social media") |> 
+    rename(Response = Q12_5)
+  
+  q12_6 <- survey_design |> 
+    group_by({{var}}, Q12_6) |> 
+    summarise(proportion = survey_mean(vartype = "se")) |> 
+    mutate(Source = "Radio or podcast") |> 
+    rename(Response = Q12_6)
+  
+  q12_7 <- survey_design |> 
+    group_by({{var}}, Q12_7) |> 
+    summarise(proportion = survey_mean(vartype = "se")) |> 
+    mutate(Source = "Word of mouth") |> 
+    rename(Response = Q12_7)
+  
+  q12_8 <- survey_design |> 
+    group_by({{var}}, Q12_8) |> 
+    summarise(proportion = survey_mean(vartype = "se")) |> 
+    mutate(Source = "Email") |> 
+    rename(Response = Q12_8)
+  
+  q12_9 <- survey_design |> 
+    group_by({{var}}, Q12_9) |> 
+    summarise(proportion = survey_mean(vartype = "se")) |> 
+    mutate(Source = "Government agencies") |> 
+    rename(Response = Q12_9)
+  
+  q12_10 <- survey_design |> 
+    group_by({{var}}, Q12_10) |> 
+    summarise(proportion = survey_mean(vartype = "se")) |> 
+    mutate(Source = "My water provider") |> 
+    rename(Response = Q12_10)
+  
+  q12_11 <- survey_design |> 
+    group_by({{var}}, Q12_11) |> 
+    summarise(proportion = survey_mean(vartype = "se")) |> 
+    mutate(Source = "Other") |> 
+    rename(Response = Q12_11)
+  
+  
+  ## get hcl values for text labels
+  hcl <- scico(5, palette = "batlow") |>  farver::decode_colour("rgb", "hcl")
+  ## text labels will be white or black
+  lab_col <- ifelse(hcl[, "l"] > 50, "black", "white")
+  ## make plot
+  p1 <- bind_rows(q12_1, q12_2, q12_3, q12_4, q12_5, q12_6, q12_7, q12_8, q12_9, q12_10, q12_11) |> 
+    filter(Source != "Other") |>
+    filter(!is.na({{var}})) |> 
+    mutate(label = round(proportion, 2)) |> 
+    mutate(label = replace(label, label <= 0.13, "")) |> 
+    ggplot() +
+    geom_col(aes(proportion, {{var}}, fill = Response)) +
+    geom_text(aes(proportion, {{var}}, fill = Response,
+                  color = Response,
+                  label = label),
+              position = position_stack(vjust = 0.5),
+              family = "Manrope Medium", size = 2) +
+    facet_wrap(facets = vars(Source)) +
+    labs(x = "Proportion", y = "Source") +
+    scale_x_continuous(expand = expansion(mult = c(0,0))) +
+    scale_fill_scico_d(palette = "batlow") +
+    scale_color_manual(values = lab_col, guide = NULL) +
+    theme_mps() +
+    theme(axis.text.x = element_text(size = 6),
+          axis.text.y.left = element_text(hjust = 1,
+                                          size = 8),
+          axis.title.x = element_text(hjust = 0),
+          axis.title.y = element_text(hjust = 0),
+          legend.text = element_text(size = 6),
+          legend.title = element_text(size = 8),
+          legend.position = "inside",
+          legend.position.inside = c(0.8,0.1),
+          legend.direction = "vertical",
+          plot.subtitle = element_text(size = 8),
+          strip.text = element_text(size = 8, hjust = 0))
+  return(p1)
+}
+
+
+plot_q12_supplement <- function(df, weights) {
+  ## convert sex No answer to NA
+  df <- df |> 
+    mutate(SEX = forcats::fct_na_level_to_value(SEX, "No answer")) |> 
+    select(SEX, AGEP, RACE2, HOWNSHP, INCOME, SCHL, Q12_1, Q12_2, Q12_3, Q12_4, Q12_5, Q12_6, Q12_7, Q12_8, Q12_9, Q12_10, Q12_11)
+  df$weights <- weights$weightvec
+  
+  survey_design <- df |> 
+    as_survey_design(weights = weights)
+  
+  
+  
+  p1 <- plot_q12_supplement_gg(survey_design, SEX)
+  p2 <- plot_q12_supplement_gg(survey_design, AGEP)
+  p3 <- plot_q12_supplement_gg(survey_design, RACE2)
+  p4 <- plot_q12_supplement_gg(survey_design, HOWNSHP)
+  p5 <- plot_q12_supplement_gg(survey_design, INCOME)
+  p6 <- plot_q12_supplement_gg(survey_design, SCHL)
+  
+  return(list(
+    SEX = p1,
+    AGEP = p2,
+    RACE2 = p3,
+    HOWNSHP = p4,
+    INCOME = p5,
+    SCHL = p6
+  ))
+}

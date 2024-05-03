@@ -46,7 +46,8 @@ knitr:
 #| message: false
 #| warning: false
 
-
+library(distributional)
+library(ggdist)
 library(modelsummary)
 library(ragg)
 library(survey)
@@ -117,7 +118,8 @@ While less frequent, large systems are not immune from failure to provide safe
 drinking water as demonstrated in Flint, Jackson, and other municipalities. 
 These high profile failures lead to confirmation of preexisting distrust of 
 government institutions by communities that have experienced marginalization 
-[@jaffeeUnequalTrustBottled2024]. Tap water avoidance has consistently increased
+[@jaffeeUnequalTrustBottled2024; @pierceMistrustTapFactors2017]. 
+Tap water avoidance has consistently increased
 among children, Hispanics, non-Hispanic black, and lower socioeconomic status 
 communities since the mid 2015 Flint Michigan crisis, suggesting decreased
 levels of trust in tap water [@rosingerHomeTapWater2020].
@@ -134,7 +136,10 @@ While public trust in government institutions is at historically low levels
 evidence that the public may have higher trust in local 
 public water utilities relative to other state, local, and federal 
 institutions [@weisnerComplexitiesTrustUrban2020]. 
-
+Confidence and trust in public drinking water and local utilities can
+be improved through meaningful engagement, campaigns, and intervention programs
+[@lawmanHydratePhillyIntervention2020; @pierceMistrustTapFactors2017; 
+@paragBattleBottlesBuilding2009].
 
 The limited research on self-supplied water users indicates that private well
 users are more likely to perceive their water as safe relative to people
@@ -147,25 +152,32 @@ an important role in educating well owners on the need for maintenance and water
 quality testing to ensure drinking water safety [@waitDisparitiesWellWater2020; 
 @gholsonConsumerWaterQuality2018]. 
 Evidence suggests rates of tap water 
-contamination can be relatively high among private wells [@pieperIncidenceWaterborneLead2015; @knobelochPrivateDrinkingWater2013; @swistockWaterQualityManagement2013; @craunCausesOutbreaksAssociated2010] despite
-the belief in high water quality.
+contamination can be relatively high among private wells 
+[@pieperIncidenceWaterborneLead2015; @knobelochPrivateDrinkingWater2013; 
+@swistockWaterQualityManagement2013; @craunCausesOutbreaksAssociated2010] 
+despite the belief in high water quality.
 Furthermore, relatively few well owner conduct regular testing or maintenance
 activities [@kreutzwiserUnderstandingStewardshipBehaviour2011; @gholsonConsumerWaterQuality2018]
 and the educational support for these activities can be highly variable [@waitDisparitiesWellWater2020].
 
 Decreased trust in water providers or water quality results in the increased
 reliance and usage of alternative sources of drinking water such as bottled 
-water [@jaffeeUnequalTrustBottled2024; @huBottledWaterUnited2011]. Evidence
-also points to factors such as age, gender, race/ethnicity, and dissatisfaction with taste/color
-with increased reliance on bottled water sources [@doriaBottledWaterTap2006; 
-@gorelickPerceptionsWaterIncreased2011; @huBottledWaterUnited2011; 
-@rosingerHomeTapWater2020].
+water [@jaffeeUnequalTrustBottled2024; @huBottledWaterUnited2011]. 
+Evidence also points to factors such as age, gender, race/ethnicity, and 
+dissatisfaction with taste/color with increased reliance on bottled water 
+sources [@doriaBottledWaterTap2006; @gorelickPerceptionsWaterIncreased2011; 
+@huBottledWaterUnited2011; @rosingerHomeTapWater2020].
 Increased reliance on more expensive bottled water source further contribute
 to issues of water insecurity in already marginalized communities.
 
 
+*note* - need to link above to research questions:
 
-
+We used a national opt-in online survey to examine (1) public perceptions of
+drinking water safety, (2) public trust in entities involved in drinking water 
+management, (3) problems experienced with drinking water, (4) concern about
+specific source of contamination, and (5) relied upon source of drinking water 
+information.
 
 
 # Methodology
@@ -369,17 +381,20 @@ utilized sources included radio or podcasts (*never* = 40.5%, ±1.6% SE;
 (*never* = 37.5%, ±1.6% SE; *occasionally* = 22.4%, ±1.4% SE).
 
 
+
+
 ## Perceived responsibility, trust, and safety
+
 
 
 ```{r}
 #| label: fig-q14
-#| fig-cap: Weighted proportional responses for the level of responsibility people believe different entities have for ensuring drinking water safety. Bar lengths represent the mean proportional response with eror bars representing the 95% confidence interval.
+#| fig-cap: Weighted proportional responses for the level of responsibility people believe different entities have for ensuring drinking water safety. Points represent the population-level estimated proportional response, horizontal lines and density ridges respresnt the indicated confidence intervals.
+#| fig-asp: 0.8
 
-tar_read(q14_summary)$p1
+tar_read(q14_shaded)
 
 ```
-
 
 In general, higher proportions of survey respondents assigned water utilities 
 (53.3%, 95% CI [50.1%, 56.5%]), local government (40.7%, 95% CI [37.5%, 43.8%]), 

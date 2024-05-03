@@ -9,7 +9,9 @@ targets::tar_option_set(
   packages = c("anesrake",
                "broom",
                "car",
+               "distributional",
                "GGally",
+               "ggdist",
                "ggforce",
                "gtsummary",
                "janitor",
@@ -111,8 +113,9 @@ list(
   tar_target(q12_summary, write_table_q12(clean_survey, raked_weights)),
   
   ## Summary figs
-  #tar_target(q8_fig, write_fig_q8(clean_survey, raked_weights)),
+  tar_target(q12_supplement, plot_q12_supplement(clean_survey, raked_weights)),
   tar_target(q14_summary, write_fig_q14(clean_survey, raked_weights)),
+  tar_target(q14_shaded, write_fig_q14_shaded(clean_survey, raked_weights)),
   tar_target(q15_summary, write_fig_q15(clean_survey, raked_weights)),
 
 

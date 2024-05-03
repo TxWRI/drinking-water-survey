@@ -1,8 +1,8 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|43c60cfb52af9810|||||||||||||||
+.Random.seed|object|9f365cd23c1b32ae|||||||||||||||
 clean_survey|stem|1fb0b1645b71b782|77189d701f6b1f18|e36a727fa31790e8|-1983322068||t19801.5449328006s|2d3f16f777831e9e|39245|rds|local|vector|||25.41||
 corr_plot|function|6fd2768e6ec48855|||||||||||||||
-data_analysis_report|stem|19b2fb2ffccc4564|0ff665d75be7c17a|02dfeab2c130a2b9|826423252|data-analysis/data-analysis.pdf*data-analysis/data-analysis.qmd|t19844.8586022259s|5211dc67d4ae7ebc|962535|file|local|vector|||19.41||
+data_analysis_report|stem|505d7bd1305df8f7|1e4a40d9c02d08c0|4100df5864bb6310|826423252|data-analysis/data-analysis.pdf*data-analysis/data-analysis.qmd|t19846.8262615686s|f346d7e8248097fe|1008138|file|local|vector|||24.63||
 draw_m1|function|9f11b618ccbf7a09|||||||||||||||
 draw_m2|function|46b5dc95c10438fd|||||||||||||||
 draw_m3|function|c8b209789ee5d02b|||||||||||||||
@@ -28,12 +28,16 @@ m3_coefs|stem|ea5fcf0864766f1e|f77d035ea42c4aac|700e8cb4bde65cb1|1684840705||t19
 munge_survey_results|function|19cfd698f5e6c785|||||||||||||||
 n|object|c5e4ec404074e8fb|||||||||||||||
 plot_m1_m3|function|2b371a4f54ce09dd|||||||||||||||
+plot_q12_supplement|function|67dc281f455f66c3|||||||||||||||
+plot_q12_supplement_gg|function|5d8ea27a26a6f2f2|||||||||||||||
 prop_pums|function|3a5e1cfed8c34ea7|||||||||||||||
 prop_pums_to_list|function|74a6b2c01b9e7899|||||||||||||||
 proportions_pums|stem|67adbe97dc6a9ee1|baff22e19220322f|782050f17a101081|1560949968||t19790.8536946834s|b768230cdbc96fc9|735|rds|local|vector|||1974.66||
 pums|stem|0751000310842271|1aeb49e25444a44d|dcd4a2b228465c62|-1487278499||t19790.8305384199s|1e67e86965547804|89751091|rds|local|vector|||812.47|package mice was built under R version 4.3.2|
 q11_summary|stem|63e3a73c89316c31|02cf3d839215dfc2|7b7f63fb5fb2e1a3|1540321941||t19815.8365924598s|76d5eddc630725a4|462119|rds|local|vector|||1.08|Ignoring unknown aesthetics fill. The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
 q12_summary|stem|7c98281906943760|b1b392d743730413|a0746e25596e9d44|-72849628||t19815.6424437647s|03ea9e66485ef30b|462534|rds|local|vector|||0.99|Ignoring unknown aesthetics fill. The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
+q12_supplement|stem|5f84a546d494b3c6|338c9f65d791c1f1|b36d24b57a6be644|-317936530||t19845.7134153578s|32ca895c8acd249e|612438|rds|local|vector|||14.9|Ignoring unknown aesthetics fill. The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.. Ignoring unknown aesthetics fill. Ignoring unknown aesthetics fill. Ignoring unknown aesthetics fill. Ignoring unknown aesthetics fill. Ignoring unknown aesthetics fill|
+q14_shaded|stem|1042098f4b83944e|2141441ee5d541e6|b197dba53306d86e|523938317||t19846.8259730386s|483b6356265880da|342337|rds|local|vector|||0.61|The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
 q14_summary|stem|426d4c5d347c344d|59a06a5377ed06f7|5cb75606a93e89a4|1993458032||t19822.4878952546s|1741e8da4d6502a3|245639|rds|local|vector|||0.68|The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
 q15_summary|stem|4e5ce314d4886fb6|e81695ed12ecbc9d|cc86e199c3fd24d7|1803167241||t19822.4879014479s|d9e707da524347dc|245963|rds|local|vector|||0.44||
 q5_q6_summary|stem|90ef8b7289db0296|39410e510dbb51f5|62ac89d896a3a22d|-909188041||t19801.5449409154s|a60aab5e3ec54799|224836|rds|local|vector|||0.27||
@@ -44,7 +48,7 @@ rake|function|c5b2bd011b001702|||||||||||||||
 raked_weights|stem|0e8219006ffceb85|8347cd29438a8b5c|fa9e15e49666f82d|201582634||t19801.5449338138s|5efd2ed2cd6b0df3|49346|rds|local|vector|||0.04|Targets for rk_AGEP do not sum to 100. Adjusting values to total 100Targets for rk_SCHL do not sum to 100. Adjusting values to total 100|
 read_survey|function|99bde7441e03fc2f|||||||||||||||
 recode_pums|function|54580698790435d7|||||||||||||||
-sup_mats|stem|359998877ecd3a5f|deeb755470a8ef2d|74f76510f01206c5|1325754969|supplementary-materials/supplementary-materials.pdf*supplementary-materials/supplementary-materials.qmd|t19843.7350180067s|7980860dfc57c196|46071|file|local|vector|||44.68||
+sup_mats|stem|6994987399dffb37|6301c0bd5c5f3ded|f24fd06b9342286e|1325754969|supplementary-materials/supplementary-materials.pdf*supplementary-materials/supplementary-materials.qmd|t19845.7177034572s|ed106995847575a5|1347287|file|local|vector|||52.2||
 survey|stem|8c6a19eb59b3f1de|3954ff0546f7c28a|c7f650620dd63b8c|-695389963||t19793.4783911454s|4037d62b01047543|78230|rds|local|vector|||0.96||
 survey_csv|stem|b47fde2ca5a85eff|a049250e728f5579|ef46db3751d8e999|-1728299971|data/Survey_Data_Coded.csv|t19549.5519247237s|e23f1e84297a4fed|304970|file|local|vector|||4.37|package mice was built under R version 4.3.2|
 target_prop_list|stem|54f6161902ebcd0b|c1d15225697903bd|f7e4b22fbdb3f92e|-380132790||t19790.8536950161s|91d375b86ccd1383|454|rds|local|vector|||0||
@@ -53,6 +57,7 @@ theme_mps_noto|function|89be2f8b9dfd22f2|||||||||||||||
 tidy.svyVGAM|function|01a9805d82e085c0|||||||||||||||
 weighted_demo_tbl|stem|92a5ee78bde28aba|5a0dd9461feb7c6c|4470020d5aa28055|-1299249986||t19835.8904567304s|9be3b414141a6562|245884|rds|local|vector|||0.67||
 write_fig_q14|function|f13c759c49ab2934|||||||||||||||
+write_fig_q14_shaded|function|3d8f649aa4c6601a|||||||||||||||
 write_fig_q15|function|2a504d7f4913e3c6|||||||||||||||
 write_fig_q7|function|645a0d861df8dc1b|||||||||||||||
 write_fig_q8|function|3d3e6127113f6456|||||||||||||||
