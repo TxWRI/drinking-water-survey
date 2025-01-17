@@ -1,0 +1,51 @@
+---
+title: "Perceptions of Drinking Water and Safety: A Public Survey of U.S. Residents"
+output: github_document
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(survey)
+```
+
+This is the data and code repository associated with 
+the draft manuscript, "Perceptions of Drinking Water and Safety: A Public Survey of U.S. Residents"
+currently in submission. Authors include: Karissa Palmer, T. Allen Berthold, Audrey McCrary, Stephanie deVilleneuve, Michael Schramm, and Holli R. Leggette
+
+
+
+This project uses the [renv](https://rstudio.github.io/renv/) and [targets](https://docs.ropensci.org/targets/) R packages to facilitate reproducibility. Once the project is downloaded and
+opened in RStudio install the renv package:
+
+```{r install, eval=FALSE}
+install.packages("renv")
+```
+
+The packages and package versions used in the project can be installed and restored using:
+```{r restore, eval=FALSE}
+renv::restore()
+```
+
+To reproduce the analysis you will need a Census API key which can be obtained from https://api.census.gov/data/key_signup.html. Then use targets to rerun the analysis. This will take a little while to run:
+```{r make, eval=FALSE}
+tidycensus::census_api_key("API KEY GOES HERE")
+targets::tar_make()
+```
+
+
+Survey responses used in our analysis are stored in the `clean_survey` target:
+
+```{r data}
+targets::tar_read(clean_survey)
+```
+
+
+## Models
+
+The RQ1 model is stored in target `m1`:
+
+```{r m1}
+summary(targets::tar_read(m1))
+```
+
+The RQ2 model is stored in target `m3` and the RQ3 model is stored in target `m2`.
