@@ -1,0 +1,4 @@
+language:
+  label:
+    fig:  !expr function(i) paste0('**Figure ', i, '.** ')
+    tab:  !expr function(i) paste0('**Table ', i, '.** ')

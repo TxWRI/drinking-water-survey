@@ -128,21 +128,17 @@ write_tbl_q5_q6 <- function(df, weights) {
     bind_rows(q6_results)
   
   results |> 
-    rename("Proportion" = proportion, "SE" = proportion_se) |> 
-    mutate(Proportion = paste0(round(Proportion, 3)),
-           SE = paste0(round(SE, 3))) |> 
+    rename("**Response**" = Response,
+           "**Proportion**" = proportion, 
+           "**SE**" = proportion_se) |> 
+    mutate(`**Proportion**` = paste0(round(`**Proportion**`, 3)),
+           `**SE**` = paste0(round(`**SE**`, 3))) |> 
     select(-c(Question)) |> 
     tt() |> 
     group_tt(i = list(
-      "What is the source of your household tap water?" = 2,
-      "What is your main source of drinking water?" = 8
-    )) |> 
-    style_tt(i = c(1, 8),
-             bold = TRUE) |> 
-    style_tt(j = c(2),
-             align = "r") |> 
-    style_tt(j = c(3),
-             align = "r") 
+      "**What is the source of your household tap water?**" = 1,
+      "**What is your main source of drinking water?**" = 7
+    ))
 }
 
 write_tbl_q7 <- function(df, weights) {
@@ -223,9 +219,9 @@ write_tbl_q7 <- function(df, weights) {
     ))
   
   q7_results |> 
-    select(Issue, "Proportion" = proportion, "SE" = proportion_se) |> 
-    mutate(Proportion = paste0(round(Proportion, 3)),
-           SE = paste0(round(SE, 3))) |> 
+    select("**Issue**" = Issue, "**Proportion**" = proportion, "**SE**" = proportion_se) |> 
+    mutate(`**Proportion**` = paste0(round(`**Proportion**`, 3)),
+           `**SE**` = paste0(round(`**SE**`, 3))) |> 
     tt() |> 
     style_tt(j = c(2),
              align = "r") |> 

@@ -90,22 +90,29 @@ draw_m2 <- function(model) {
     geom_vline(xintercept = 1) +
     geom_pointrange(aes(x = estimate, xmin = conf.low, xmax = conf.high, 
                         y = var, color = level),
-                    size = 0.25,
+                    fatten = 4, linewidth = 0.75,
                     position = position_dodge(width = 0.5)) +
     
     ggforce::facet_col(vars(group), scales = "free_y", space = "free") +
-    scico::scale_color_scico_d("", palette = "glasgow", begin = 0.25, end = 0.75) +
+    scico::scale_color_scico_d("Drinking water source:", palette = "glasgow", begin = 0.25, end = 0.75) +
     scale_x_log10() +
     labs(x = "Odds-ratio", y = "") +
     theme_mps() +
-    theme(axis.text.y = element_text(size = 8, hjust = 1),
-          axis.text.x = element_text(size = 8),
-          legend.text = element_text(size = 8),
+    theme(axis.text.y = element_text(size = rel(0.8), hjust = 1),
+          axis.text.x = element_text(size = rel(1)),
+          legend.text = element_text(size = rel(0.8)),
+          legend.position = "top",
+          #legend.position.inside = c(0,1),
+          legend.direction = "horizontal",
+          legend.justification = c(0,0),
+          legend.location = "plot",
+          legend.title.position = "left",
+          legend.title = element_text(family = "Manrope Medium"),
           panel.grid.major.y = element_blank(),
           panel.grid.major.x = element_line(linetype = "dotted", color = "#d9d9d9"),
           strip.background = element_blank(),
           strip.placement = "outside",
-          strip.text.x.top =  element_text(size = 8, angle = 0,vjust = 0, hjust = 0))
+          strip.text.x.top =  element_text(size = rel(0.8), angle = 0,vjust = 0, hjust = 0))
   
   return(list( df = df,
                p1 = p1))

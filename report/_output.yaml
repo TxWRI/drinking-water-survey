@@ -1,0 +1,6 @@
+bookdown::word_document2:
+  reference_docx: "reference-awra.docx"
+  number_sections: false
+  pandoc_args:
+    - --lua-filter=filters/scholarly-metadata.lua
+    - --lua-filter=filters/author-info-blocks.lua
