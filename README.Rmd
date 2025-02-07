@@ -86,7 +86,9 @@ Predictor variables included sex/gender, age category, race/ethnicity, education
 The RQ1 model is stored in target `m1`:
 
 ```{r m1}
-gtsummary::tbl_regression(targets::tar_read(m1), exponentiate = TRUE)
+gtsummary::tbl_regression(targets::tar_read(m1), exponentiate = TRUE) |> 
+  gtsummary::as_gt() |> 
+  gt::as_raw_html()
 ```
 
 ### RQ2
@@ -102,13 +104,17 @@ State government, Local government, Water utility, Landlord/property manager, an
 Results for this model are stored in target `m4`:
 
 ```{r m4}
-gtsummary::tbl_regression(targets::tar_read(m4), exponentiate = TRUE)
+gtsummary::tbl_regression(targets::tar_read(m4), exponentiate = TRUE) |> 
+  gtsummary::as_gt() |> 
+  gt::as_raw_html()
 ```
 
 A second model was fit to ordinal rating levels (Do not trust at all, Somewhat trust, Moderately trust, Mostly trust, Fully trust) in response to the questions, "What is your level of trust in the following entities for making sure your drinking water is safe for consumption?" Our predictor variable of interest are drinking water entities. Results are stored in target `m5`.
 
 ```{r m5}
-gtsummary::tbl_regression(targets::tar_read(m5), exponentiate = TRUE)
+gtsummary::tbl_regression(targets::tar_read(m5), exponentiate = TRUE) |>   
+  gtsummary::as_gt() |> 
+  gt::as_raw_html()
 ```
 
 Next we explored predictors associated with changes in the probability of
@@ -117,7 +123,9 @@ proportional odds model to responses of trust level for drinking water utilities
 with sex/gender, age category, race/ethnicity, education, homeownership, income, primary tap water supply, and experience with any of (1) odd taste, (2) odd smell, (3) discolored water, or (4) cloudy water as predictors. Results are stored in target `m3`
 
 ```{r m3}
-gtsummary::tbl_regression(targets::tar_read(m3), exponentiate = TRUE)
+gtsummary::tbl_regression(targets::tar_read(m3), exponentiate = TRUE) |> 
+  gtsummary::as_gt() |> 
+  gt::as_raw_html()
 ```
 
 ### RQ3
@@ -127,7 +135,9 @@ predictor variables on choices in primary drinking water source (unfiltered tap 
 Demographic variables, tap water sources, and experience with taste/odor/color issues were
 the independent variables. Results are stored in target `m2`:
 
-```{r m2, results='asis'}
+```{r m2}
 m2 <- targets::tar_read(m2)
-gtsummary::tbl_regression(m2, exponentiate = TRUE)
+gtsummary::tbl_regression(m2, exponentiate = TRUE) |> 
+  gtsummary::as_gt() |> 
+  gt::as_raw_html()
 ```
