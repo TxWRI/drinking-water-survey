@@ -15,6 +15,7 @@ targets::tar_option_set(
                "GGally",
                "ggdist",
                "ggforce",
+               "ggrepel",
                "gtsummary",
                "janitor",
                "mice",
@@ -89,22 +90,10 @@ list(
   
   ## m2 drinking water source as a function of demographics, tap water sources
   ## fits a multinomial regression model using {VGAM} and {svyVGAM} packages
-  ## still need to add taste/odor/color issues
   tar_target(m2,
              fit_m2(clean_survey,
                     raked_weights)),
-  # tar_target(m2_coefs,
-  #            draw_m2(m2)),
-  # tar_target(m2_coefs_file, ggsave("figures/fig2.pdf",
-  #                             plot = m2_coefs$p1,
-  #                             device = cairo_pdf,
-  #                             width = 6.5,
-  #                             height = 6.5*1.1,
-  #                             units = "in",
-  #                             dpi = 300,
-  #                             scale = 1),
-  #            format = "file"),
-  
+
   ## m3 trust in local utility
   ## fits an ordered logistic regression using {survey}
   tar_target(m3,
@@ -112,27 +101,51 @@ list(
   tar_target(m3_coefs,
              draw_m3(m3)),
   
+  ## m4 is level of responsibility by entity
+  tar_target(m4,
+             fit_m4(clean_survey,
+                    raked_weights)),
+  ## returns the GVIF of each moderator in the model
+  tar_target(gvif_m4,
+             gvif(m4)),
   
-  ## model figures
-  # tar_target(m1_m3_coefs, plot_m1_m3(m1_coefs, m3_coefs)),
-  # tar_target(m1_m3_coefs_file, ggsave("figures/fig6.pdf",
-  #                             plot = m1_m3_coefs,
-  #                             device = cairo_pdf,
-  #                             width = 6.5,
-  #                             height = 6.5*1.1,
-  #                             units = "in",
-  #                             dpi = 300,
-  #                             scale = 1),
-  #            format = "file"),  
+  ## m5 is level of trust by entity
+  tar_target(m5,
+             fit_m5(clean_survey,
+                    raked_weights)),
+  ## returns the GVIF of each moderator in the model
+  tar_target(gvif_m5,
+             gvif(m5)),
   
   ## Summary table
   tar_target(weighted_demo_tbl, write_tbl_weights(clean_survey,
                                                   raked_weights)),
   tar_target(q5_q6_summary, write_tbl_q5_q6(clean_survey, raked_weights)),
   tar_target(q7_summary, write_tbl_q7(clean_survey, raked_weights)),
-  ## Figure 4
+  
+  ## Figure 1
+  tar_target(m4_5_figure, draw_m4_5(m4, m5)),
+  tar_target(m4_5_plot_pdf, ggsave("figures/fig1.pdf",
+                                   plot = m4_5_figure$p1,
+                                   device = cairo_pdf,
+                                   width = 6.5,
+                                   height = 3.25,
+                                   units = "in",
+                                   dpi = 300,
+                                   scale = 1),
+             format = "file"),
+  tar_target(m4_5_plot_png, ggsave("figures/fig1.png",
+                                   plot = m4_5_figure$p1,
+                                   device = agg_png,
+                                   width = 6.5,
+                                   height = 3.25,
+                                   units = "in",
+                                   dpi = 300,
+                                   scale = 1),
+             format = "file"),
+  ## Figure 2
   tar_target(q11_summary, write_table_q11(clean_survey, raked_weights)),
-  tar_target(q11_file, ggsave("figures/fig4.pdf",
+  tar_target(q11_file, ggsave("figures/fig2.pdf",
                               plot = q11_summary$p1,
                               device = cairo_pdf,
                               width = 6.5,
@@ -141,7 +154,7 @@ list(
                               dpi = 300,
                               scale = 1),
              format = "file"),  
-  tar_target(q11_png_file, ggsave("figures/fig4.png",
+  tar_target(q11_png_file, ggsave("figures/fig2.png",
                               plot = q11_summary$p1,
                               device = agg_png,
                               width = 6.5,
@@ -150,9 +163,9 @@ list(
                               dpi = 300,
                               scale = 1),
              format = "file"),  
-  # Figure 5
+  # Figure 3
   tar_target(q12_summary, write_table_q12(clean_survey, raked_weights)),
-  tar_target(q12_pdf_file, ggsave("figures/fig5.pdf",
+  tar_target(q12_pdf_file, ggsave("figures/fig3.pdf",
                               plot = q12_summary$p1,
                               device = cairo_pdf,
                               width = 6.5,
@@ -161,7 +174,7 @@ list(
                               dpi = 300,
                               scale = 1),
              format = "file"), 
-  tar_target(q12_png_file, ggsave("figures/fig5.png",
+  tar_target(q12_png_file, ggsave("figures/fig3.png",
                                   plot = q12_summary$p1,
                                   device = agg_png,
                                   width = 6.5,
@@ -173,70 +186,7 @@ list(
     
   ## Summary figs
   tar_target(q12_supplement, plot_q12_supplement(clean_survey, raked_weights)),
-  ## Figure 1
-  tar_target(q14_summary, write_fig_q14(clean_survey, raked_weights)),
-  tar_target(q14_file, ggsave("figures/fig1.pdf",
-                              plot = q14_summary$p1,
-                              device = cairo_pdf,
-                              width = 3.25,
-                              height = 3.25*2,
-                              units = "in",
-                              dpi = 300,
-                              scale = 2),
-             format = "file"),
-  tar_target(q14_png_file, ggsave("figures/fig1.png",
-                              plot = q14_summary$p1,
-                              device = agg_png,
-                              width = 3.25,
-                              height = 3.25*2,
-                              units = "in",
-                              dpi = 300,
-                              scale = 2),
-             format = "file"),
-  # tar_target(q14_shaded, write_fig_q14_shaded(clean_survey, raked_weights)),
-  ## Figure 2
-  tar_target(q15_summary, write_fig_q15(clean_survey, raked_weights)),
-  tar_target(q15_file_pdf, ggsave("figures/fig2.pdf",
-                              plot = q15_summary$p1,
-                              device = cairo_pdf,
-                              width = 3.25,
-                              height = 3.25*2,
-                              units = "in",
-                              dpi = 300,
-                              scale = 2),
-             format = "file"),
-  tar_target(q15_file_png, ggsave("figures/fig2.png",
-                                  plot = q15_summary$p1,
-                                  device = agg_png,
-                                  width = 3.25,
-                                  height = 3.25*2,
-                                  units = "in",
-                                  dpi = 300,
-                                  scale = 2),
-             format = "file"),
-  # tar_target(q15_shaded, write_fig_q15_shaded(clean_survey, raked_weights)),
-  tar_target(q15_by_source, write_fig_q15_bysource(clean_survey, raked_weights)),
-  
-  ## Figure 3
-  tar_target(q15_by_resident_source, write_fig_q15_residents_bysource(clean_survey, raked_weights)),
-  tar_target(q15_by_resident_source_file_pdf, ggsave("figures/fig3.pdf",
-                                  plot = q15_by_resident_source$p1,
-                                  device = cairo_pdf,
-                                  width = 3.25*2,
-                                  height = 3.25,
-                                  units = "in",
-                                  dpi = 300,
-                                  scale = 1),
-             format = "file"),
-  tar_target(q15_by_resident_source_file_png, ggsave("figures/fig3.png",
-                                  plot = q15_by_resident_source$p1,
-                                  device = agg_png,
-                                  width = 3.25*2,
-                                  height = 3.25,
-                                  units = "in",
-                                  dpi = 300,
-                                  scale = 1),
-             format = "file")
 
+  tar_target(q15_by_source, write_fig_q15_bysource(clean_survey, raked_weights))
 
 )
