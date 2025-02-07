@@ -7,16 +7,21 @@ data_analysis_report|stem|40ecff680fb62aa4|523529103d8632dd|c72dfac45a845455|826
 draw_m1|function|9f11b618ccbf7a09|||||||||||||||
 draw_m2|function|9f9b8559733678c8|||||||||||||||
 draw_m3|function|c8b209789ee5d02b|||||||||||||||
-files|object|1b8b5c2b46c912e7|||||||||||||||
+draw_m4_5|function|e2b19458419af285|||||||||||||||
+files|object|11f0f0286eea2350|||||||||||||||
 fit_m1|function|0214077b02242145|||||||||||||||
 fit_m2|function|5b2f71ffebda2e0a|||||||||||||||
 fit_m3|function|3ebbcb569d47b38e|||||||||||||||
+fit_m4|function|3d6c68f023c289a2|||||||||||||||
+fit_m5|function|574a467ddb83bbd1|||||||||||||||
 font_hoist|function|6a3159ad4c1a4b93|||||||||||||||
 formated_pums|stem|70bd84d8f8ec85a7|bc6ce120e5bdca44|27033af31d865b5f|-755186039||t19790.8308386206s|46d1e0b5f37b1fd2|35739488|rds|local|vector|||13.28||
 get_pums_data|function|6cc5241727a75695|||||||||||||||
 gvif|function|b44c8adf48f86614|||||||||||||||
 gvif_m1|stem|6ff5a37637a3fe50|423e2a33475ef688|cc42f6dc231bc316|1859892930||t19830.7776668552s|fdec9ce76e2bcbf8|316|rds|local|vector|||0||
 gvif_m2|stem|65c37828b77aa859|8ec603d73a24f84f|4affca5636977583|867630012||t19822.7324451098s||316|rds|local|vector|||0||no terms component nor attribute
+gvif_m4|stem|9a28fc7beca96dd4|bff3723ee85e6b65|e2a827194b6fa28f|360486349||t20126.5792472016s|f008763eb0bfd232|318|rds|local|vector|||0||
+gvif_m5|stem|9b7646385f216b8b|71eb3eee65264a16|c0bf7744f1471693|1298097181||t20126.5828623806s|4f7108de728dd56a|319|rds|local|vector|||0||
 impute_variables|function|2b848dbda83eed02|||||||||||||||
 m1|stem|f9104b39f05f7b73|834cd6daaa3bfe11|b8bff2bff614789a|-110284977||t19830.7776661289s|cc1f13be816e8373|283291|rds|local|vector|||0.27||
 m1_coefs|stem|8d25c2c434fd8222|b60a04d1324c36d4|fdc162d9f95534a1|1899145138||t19830.7826527849s|dbfdb9feffac017b|513502|rds|local|vector|||0.17||
@@ -28,10 +33,15 @@ m2_coefs|stem|e9ab7788934373bf|b2447653669f1669|93361662e0a8bd8a|-1222764348||t1
 m2_coefs_file|stem|93c9072630d66584|1f29e8e1b21b5d38|398b6abe10c6964e|-1535524308|figures/fig2.pdf|t20105.7105254521s|e36f970a83c9504b|19730|file|local|vector|||0.55||
 m3|stem|cf64d96f8d0c720d|9991ca164e5c112f|252427ebbaa7b45c|-551534094||t19830.7246231015s|b4aa0412291cb0e1|191213|rds|local|vector|||0.2||
 m3_coefs|stem|ea5fcf0864766f1e|f77d035ea42c4aac|700e8cb4bde65cb1|1684840705||t19830.782648911s|d1b2875997774d16|421784|rds|local|vector|||1.34|The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
+m4|stem|bbee968c49e7f0bd|e9574b9582876256|3cb8bc679dd580b9|1283437786||t20126.5786394684s|cfce37ed3a596cc6|715811|rds|local|vector|||1.27||
+m4_5_figure|stem|7b3c98335ac31c4b|37f1fffe2e096ad2|abd344ca0baa2888|-1086630455||t20126.7538788477s|5ff3d17b051f3728|2230474|rds|local|vector|||1.61|The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
+m4_5_plot_pdf|stem|fda575bcdad602ad|5596db882b9cb065|bc0d3c1111af2ea1|170982318|figures/fig1.pdf|t20126.7538865942s|62a40330dc9e899e|10929|file|local|vector|||0.28||
+m4_5_plot_png|stem|50f3b03d0734f98c|2c23a08a7d651180|bc0d3c1111af2ea1|239047679|figures/fig1.png|t20126.7538830328s|6e113a562ce4900d|83049|file|local|vector|||0.29||
+m5|stem|00ea3edc9836291a|05909536b844e932|8326cc455b4bc2c6|-1687838615||t20126.5786508934s|e50767a23fe18243|713139|rds|local|vector|||0.89||
 manuscript|stem|6d25f11d8ee59906|5416eda102b51b90|15a2bfcaddb69b6b|-1793997187|manuscript/_book/_main.docx*manuscript|t19879.8219396683s|14223fd6000c242c|1373506|file|local|vector|||9.37||
 manuscript_file|stem|81730a25ee128367|4a60cdf30f7b6be9|ef46db3751d8e999|1317063552||t19877.7880236839s|8fcb0666863d3c08|92|rds|local|vector|||6.81|package car was built under R version 4.3.2. package carData was built under R version 4.3.2. package mice was built under R version 4.3.2. package tinytable was built under R version 4.3.3|
 munge_survey_results|function|19cfd698f5e6c785|||||||||||||||
-n|object|d2de1d6c7b4981be|||||||||||||||
+n|object|6d78601172d068a8|||||||||||||||
 plot_m1_m3|function|758638f830a2460b|||||||||||||||
 plot_q12_supplement|function|67dc281f455f66c3|||||||||||||||
 plot_q12_supplement_gg|function|5d8ea27a26a6f2f2|||||||||||||||
@@ -39,12 +49,12 @@ prop_pums|function|3a5e1cfed8c34ea7|||||||||||||||
 prop_pums_to_list|function|74a6b2c01b9e7899|||||||||||||||
 proportions_pums|stem|67adbe97dc6a9ee1|baff22e19220322f|782050f17a101081|1560949968||t19790.8536946834s|b768230cdbc96fc9|735|rds|local|vector|||1974.66||
 pums|stem|0751000310842271|1aeb49e25444a44d|dcd4a2b228465c62|-1487278499||t19790.8305384199s|1e67e86965547804|89751091|rds|local|vector|||812.47|package mice was built under R version 4.3.2|
-q11_file|stem|d20d53b0c006e0b8|24497bd54594bdae|0d8b0c9a26dd118b|470835281|figures/fig4.pdf|t20105.704653781s|b190a3693c1f33c3|13459|file|local|vector|||0.46||
-q11_png_file|stem|ef9b4101206ef112|1eaf0d9dcccabc05|0d8b0c9a26dd118b|-649035482|figures/fig4.png|t20105.7046483225s|ab85832e9f2ed4fa|136113|file|local|vector|||0.33||
+q11_file|stem|75e326d9a1a6c3f2|9f86ec3dddf0cd29|0d8b0c9a26dd118b|470835281|figures/fig2.pdf|t20126.842870805s|b190a3693c1f33c3|13459|file|local|vector|||0.33||
+q11_png_file|stem|ef9b4101206ef112|72b7add8e2bd9c16|0d8b0c9a26dd118b|-649035482|figures/fig2.png|t20126.8428753803s|ab85832e9f2ed4fa|136113|file|local|vector|||0.36||
 q11_summary|stem|63e3a73c89316c31|02cf3d839215dfc2|7b7f63fb5fb2e1a3|1540321941||t19815.8365924598s|76d5eddc630725a4|462119|rds|local|vector|||1.08|Ignoring unknown aesthetics fill. The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
 q12_file|stem|af8f113d87306ff3|fd9fd014c5a6eed7|670e82af9d7d78ae|1551235927|figures/fig3.pdf|t19878.5872268915s|a0f50d0fd8e6e9ea|13393|file|local|vector|||0.27||
-q12_pdf_file|stem|b84bd38aa97d70ce|bb950398c522b9d1|670e82af9d7d78ae|1888473301|figures/fig5.pdf|t20105.7046587455s|a0f50d0fd8e6e9ea|13393|file|local|vector|||0.14||
-q12_png_file|stem|1c7c55c269797b18|31c8f5dbe17ff970|670e82af9d7d78ae|549468577|figures/fig5.png|t20105.7046569734s|04dfd3ef65c3f48e|137521|file|local|vector|||0.21||
+q12_pdf_file|stem|3669e756977ee4e8|fd9fd014c5a6eed7|670e82af9d7d78ae|1888473301|figures/fig3.pdf|t20126.8428776743s|a0f50d0fd8e6e9ea|13393|file|local|vector|||0.14||
+q12_png_file|stem|1c7c55c269797b18|36141c9aefb27312|670e82af9d7d78ae|549468577|figures/fig3.png|t20126.8428805952s|04dfd3ef65c3f48e|137521|file|local|vector|||0.21||
 q12_summary|stem|7c98281906943760|b1b392d743730413|a0746e25596e9d44|-72849628||t19815.6424437647s|03ea9e66485ef30b|462534|rds|local|vector|||0.99|Ignoring unknown aesthetics fill. The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
 q12_supplement|stem|5f84a546d494b3c6|338c9f65d791c1f1|b36d24b57a6be644|-317936530||t19845.7134153578s|32ca895c8acd249e|612438|rds|local|vector|||14.9|Ignoring unknown aesthetics fill. The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.. Ignoring unknown aesthetics fill. Ignoring unknown aesthetics fill. Ignoring unknown aesthetics fill. Ignoring unknown aesthetics fill. Ignoring unknown aesthetics fill|
 q14_file|stem|4dc12237b624e8fc|b13b1b08d474a6ef|d5a89d65ec52e082|-1622445426|figures/fig1.pdf|t20105.704663727s|4e3e3c157e09a944|13249|file|local|vector|||0.39||
@@ -89,7 +99,7 @@ write_fig_q15_bysource|function|e5686caa9483ef77|||||||||||||||
 write_fig_q15_residents_bysource|function|41fb302479f0548c|||||||||||||||
 write_fig_q15_shaded|function|8cf5a5408a8d1a36|||||||||||||||
 write_fig_q7|function|645a0d861df8dc1b|||||||||||||||
-write_fig_q8|function|f36822f34582e720|||||||||||||||
+write_fig_q8|function|1f0474919a4a8668|||||||||||||||
 write_table_q11|function|db380a863ed84451|||||||||||||||
 write_table_q12|function|a96a8cd6b986528b|||||||||||||||
 write_tbl_q5_q6|function|5636e4510886cf70|||||||||||||||

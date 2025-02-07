@@ -6,6 +6,32 @@ output: github_document
 ```{r setup, include=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(survey)
+library(svyVGAM)
+tidy.svyVGLM <- function(
+    x, 
+    conf.int = FALSE, 
+    conf.level = 0.95,
+    exponentiate = FALSE, 
+    ...
+){
+  # Replace `summary(x)$coefficients` with `summary(x)$coeftable`
+  s <- summary(x)
+  s <- s$coeftable
+  ret <- tibble::as_tibble(s, rownames = "term")
+  
+  # All of this stays the same:
+  colnames(ret) <- c("term", "estimate", "std.error", "statistic", "p.value")
+  coefs <- tibble::enframe(stats::coef(x), name = "term", value = "estimate")
+  ret <- dplyr::left_join(coefs, ret, by = c("term", "estimate"))
+  if (conf.int){
+    ci <- broom:::broom_confint_terms(x, level = conf.level, ...)
+    ret <- dplyr::left_join(ret, ci, by = "term")
+  }
+  if (exponentiate){ret <- broom:::exponentiate(ret)}
+  
+  ret
+  
+}
 ```
 
 This is the data and code repository associated with 
@@ -42,10 +68,66 @@ targets::tar_read(clean_survey)
 
 ## Models
 
+
+### RQ1
+
+Research Question 1 was inferred using a weighted proportional odds model:
+$$
+\ln \left( \frac{P(Y\leq j)}{P(Y>j)} \right) = \alpha_j - \beta_1 x_1 - \cdots - \beta_n x_n 
+$$
+
+where the left hand side of the equation is the log odds of the cumulative probability
+of an outcome being at up to and including level $j$. The outcome levels are
+ordinal rating 1,...,10 in response to the question: "How safe do you believe your
+drinking water is for consumption?"
+Predictor variables included sex/gender, age category, race/ethnicity, education, homeownership, income, primary tap water supply, and experience with any of (1) odd taste, (2) odd smell, (3) discolored water, or (4) cloudy water.
+
+
 The RQ1 model is stored in target `m1`:
 
 ```{r m1}
-summary(targets::tar_read(m1))
+gtsummary::tbl_regression(targets::tar_read(m1), exponentiate = TRUE)
 ```
 
-The RQ2 model is stored in target `m3` and the RQ3 model is stored in target `m2`.
+### RQ2
+
+Research question 2 asks how much trust does the public have in drinking water entities.
+Again we fit a proportion-odds model to ordinal rating levels
+(No responsibility, Some responsibility, Moderate responsibility, Most responsibility, Full Responsibility)
+in response to the question, "What level of responsibility should the following entities
+have for making sure drinking water is safe?"
+Our predictor variable of interest are drinking water entities: Federal Government,
+State government, Local government, Water utility, Landlord/property manager, and household residents.
+
+Results for this model are stored in target `m4`:
+
+```{r m4}
+gtsummary::tbl_regression(targets::tar_read(m4), exponentiate = TRUE)
+```
+
+A second model was fit to ordinal rating levels (Do not trust at all, Somewhat trust, Moderately trust, Mostly trust, Fully trust) in response to the questions, "What is your level of trust in the following entities for making sure your drinking water is safe for consumption?" Our predictor variable of interest are drinking water entities. Results are stored in target `m5`.
+
+```{r m5}
+gtsummary::tbl_regression(targets::tar_read(m5), exponentiate = TRUE)
+```
+
+Next we explored predictors associated with changes in the probability of
+trust ratings for drinking water utilities specifically. Here we fit the 
+proportional odds model to responses of trust level for drinking water utilities
+with sex/gender, age category, race/ethnicity, education, homeownership, income, primary tap water supply, and experience with any of (1) odd taste, (2) odd smell, (3) discolored water, or (4) cloudy water as predictors. Results are stored in target `m3`
+
+```{r m3}
+gtsummary::tbl_regression(targets::tar_read(m3), exponentiate = TRUE)
+```
+
+### RQ3
+
+We used a weighted multinomial regression model to explore the effects of 
+predictor variables on choices in primary drinking water source (unfiltered tap water, filtered tap water, and bottled water).
+Demographic variables, tap water sources, and experience with taste/odor/color issues were
+the independent variables. Results are stored in target `m2`:
+
+```{r m2, results='asis'}
+m2 <- targets::tar_read(m2)
+gtsummary::tbl_regression(m2, exponentiate = TRUE)
+```
