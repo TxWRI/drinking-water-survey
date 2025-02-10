@@ -1,6 +1,10 @@
 ---
 title: "Perceptions of Drinking Water and Safety: A Public Survey of U.S. Residents"
-output: github_document
+output: 
+  github_document:
+    math_method: 
+      engine: webtex
+      url: https://latex.codecogs.com/svg.image?
 ---
 
 ```{r setup, include=FALSE, message=FALSE}
@@ -72,6 +76,7 @@ targets::tar_read(clean_survey)
 ### RQ1
 
 Research Question 1 was inferred using a weighted proportional odds model:
+
 $$
 \ln \left( \frac{P(Y\leq j)}{P(Y>j)} \right) = \alpha_j - \beta_1 x_1 - \cdots - \beta_n x_n 
 $$
