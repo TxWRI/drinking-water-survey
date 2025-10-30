@@ -38,9 +38,17 @@ tidy.svyVGLM <- function(
 }
 ```
 
+<!-- badges: start -->
+
+[![DOI Badge](https://img.shields.io/badge/doi%3A-10.6084%2Fm9.figshare.28383833-blue?style=plastic&logo=figshare&label=DOI&link=doi.org%2F10.6084%2Fm9.figshare.28383833)](https://doi.org/10.6084/m9.figshare.28383833)
+
+<!-- badges: end -->
+
+
 This is the data and code repository associated with 
-the draft manuscript, "Perceptions of Drinking Water and Safety: A Public Survey of U.S. Residents"
-currently in submission. Authors include: Karissa Palmer, T. Allen Berthold, Audrey McCrary, Stephanie deVilleneuve, Michael Schramm, and Holli R. Leggette
+the manuscript: 
+
+Palmer, K., T. A. Berthold, A. McCrary, S. deVilleneuve, M. Schramm, and H. R. Leggette. 2025. “ Perceptions of Drinking Water and Safety: A Public Survey of U.S. Residents.” JAWRA Journal of the American Water Resources Association 61, no. 5: e70059. https://doi.org/10.1111/1752-1688.70059. 
 
 
 
